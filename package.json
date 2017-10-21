@@ -1,0 +1,11 @@
+{
+  "name": "bqpjs",
+  "version": "0.0.1",
+  "description": "Boolean Queary Parser JS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ffeibel@gmail.com",
+  "license": "ISC"
+}
