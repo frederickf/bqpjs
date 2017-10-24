@@ -1,4 +1,3 @@
-
 const Token = require('./token')
 
 class Lexer {
@@ -6,60 +5,96 @@ class Lexer {
   constructor(rules, ruleNames) {
     this.rules = rules
     this.ruleNames = ruleNames
-    this.tokens = []
   }
 
   createTokens(searchStr) {
     let currentStr = ''
     let currentPosition = 0
-    let searchArr = searchStr.split('')
+    let tokens = []
+    let quotes = false
 
-    while(currentPosition < searchArr.length) {
-      currentStr += searchArr[currentPosition]
+    while (currentPosition < searchStr.length) {
+      currentStr += searchStr.charAt(currentPosition)
 
       for (let i = 0; i < this.ruleNames.length; i++) {
         let rule = this.rules[this.ruleNames[i]]
         let matchStart = rule.test(currentStr)
 
-        // No match, apply the next rule
-        if (matchStart === -1 ) {
-          continue
-        }
-
-        // this a match at the beginning of the string
-        // grab it, clear current string and break out
-        if (matchStart === 0) {
-          this.tokens.push(createToken(currentStr, rule.type, currentPosition))
-
-          currentStr = ''
-          break
-        }
-
-        // We've found an operator at the end of a search term
-        // termAND or term) or term" or term' '  (with a space at the end)
-        // grab the term, grab the operator, clear current string and break out
-        if (matchStart > 0 ) {
-          let term = currentStr.slice(0, matchStart)
+        if (matchStart !== -1 ) {
           let operator = currentStr.slice(matchStart)
-          this.tokens.push(createToken(term, 'term', currentPosition - operator.length))
-          this.tokens.push(createToken(operator, rule.type, currentPosition))
+
+          if (rule.name === 'quote') {
+            quotes = true
+          }
+
+          if (matchStart > 0 ) {
+            // We've found an operator at the end of a search term
+            // EX: termAND or term) or term" or term' '  (with a space at the end)
+            // Add it to tokens before the operator
+            let term = currentStr.slice(0, matchStart)
+            tokens.push(createToken(term, 'term', currentPosition - operator.length))
+          }
+
+          tokens.push(createToken(operator, rule.type, currentPosition))
 
           currentStr = ''
-          break
         }
-      }
-
-      if ( (currentPosition === (searchArr.length - 1)) && currentStr.length > 0) {
-        //console.log('end of search string')
-        // We're at the end of the search string but we have some current string left, must be a term
-        this.tokens.push(createToken(currentStr, 'term', currentPosition))
       }
 
       currentPosition++
     }
 
-    return this.tokens
+    if (currentStr !== '') {
+      // We're at the end of the search string but we have some current string left, must be a term
+      tokens.push(createToken(currentStr, 'term', currentPosition))
+    }
+
+    if (quotes) {
+      console.log('quotes found')
+      tokens = fixQuotes(tokens)
+    }
+
+    return tokens
   }
+}
+
+function fixQuotes(tokens) {
+  const newTokens = []
+  let quoteMode = false
+  let currentValue = ''
+  let lastQuoteToken = null
+
+  while(tokens.length) {
+    let currentToken = tokens.shift()
+
+    if (quoteMode) {
+        if (currentToken.value === `"`) {
+          newTokens.push(createToken(currentValue, 'term', currentToken.position.end - 1))
+          newTokens.push(currentToken)
+          currentValue = ''
+          quoteMode = false
+        }
+        else {
+          currentValue += currentToken.value
+        }
+    }
+    else {
+      if (currentToken.value === `"`) {
+        newTokens.push(currentToken)
+        lastQuoteToken = currentToken
+        quoteMode = true
+      }
+      else {
+        newTokens.push(currentToken)
+      }
+    }
+  }
+
+  if (quoteMode) {
+    throw new Error(`Unclosed quote at ${lastQuoteToken.position.start}`)
+  }
+
+  return newTokens
 }
 
 function createToken(value, type, currentPosition) {

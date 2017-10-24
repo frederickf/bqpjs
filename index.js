@@ -2,7 +2,7 @@ const util = require('util')
 const Lexer = require('./lexer')
 const rules = require('./rules')
 
-let searchStr = '"JavaScript AND Java" OR (PHP AND Java)' // (a and b)
+let searchStr = process.argv[2]
 const ruleNames = ['and', 'or', 'not', 'openParen', 'closeParen', 'quote', 'space']
 const lexer = new Lexer(rules, ruleNames)
 const tokens = lexer.createTokens(searchStr)
