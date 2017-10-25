@@ -35,8 +35,11 @@ class EscapeableRule extends Rule {
 
 module.exports = {
   and: new Rule('AND'),
+  plus: new Rule('+'),
   or: new Rule('OR'),
+  tilde: new Rule('~'),
   not: new Rule('NOT'),
+  minus: new Rule('-'),
   openParen: new Rule('('),
   closeParen: new Rule(')'),
   quote: new EscapeableRule('"'),

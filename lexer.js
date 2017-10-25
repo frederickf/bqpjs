@@ -23,7 +23,7 @@ class Lexer {
         if (matchStart !== -1 ) {
           let operator = currentStr.slice(matchStart)
 
-          if (rule.name === 'quote') {
+          if (this.ruleNames[i] === 'quote') {
             quotes = true
           }
 
