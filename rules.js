@@ -40,8 +40,8 @@ module.exports = {
   tilde: new Rule('~'),
   not: new Rule('NOT'),
   minus: new Rule('-'),
-  openParen: new Rule('('),
-  closeParen: new Rule(')'),
-  quote: new EscapeableRule('"'),
+  openParen: new Rule('(', 'grouping'),
+  closeParen: new Rule(')', 'grouping'),
+  quote: new EscapeableRule('"', 'grouping'),
   space: new Rule(' ', 'whitespace')
 }
