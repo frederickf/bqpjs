@@ -1,13 +1,21 @@
 const util = require('util')
 const Lexer = require('./lexer')
 const rules = require('./rules')
+const Parser = require('./parser')
 
 let searchStr = process.argv[2]
+
 const ruleNames = ['and', 'plus', 'or', 'tilde', 'not', 'minus', 'openParen', 'closeParen', 'quote', 'space']
+
 const lexer = new Lexer(rules, ruleNames)
 const tokens = lexer.createTokens(searchStr)
 
-console.log( util.inspect(tokens, {showHidden: true, depth: null}) )
+const parser = new Parser()
+const syntax = parser.createAbstractSyntaxTree(tokens)
+
+console.log('tokens', tokens)
+console.log()
+console.log('syntax', syntax)
 
 
 // No quetes inside quetes?
