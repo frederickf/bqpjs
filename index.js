@@ -7,7 +7,7 @@ let searchStr = process.argv[2]
 
 const ruleNames = ['and', 'plus', 'or', 'tilde', 'not', 'minus', 'openParen', 'closeParen', 'quote', 'space']
 
-const lexer = new Lexer(rules, ruleNames)
+const lexer = new Lexer(rules, ruleNames, 'AND')
 const tokens = lexer.createTokens(searchStr)
 
 const parser = new Parser()

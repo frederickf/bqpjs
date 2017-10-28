@@ -2,9 +2,10 @@ const Token = require('./token')
 
 class Lexer {
 
-  constructor(rules, ruleNames) {
+  constructor(rules, ruleNames, defaultOperation) {
     this.rules = rules
     this.ruleNames = ruleNames
+    this.defaultOperation = defaultOperation
   }
 
   createTokens(searchStr) {
@@ -21,21 +22,20 @@ class Lexer {
         let matchStart = rule.test(currentStr)
 
         if (matchStart !== -1 ) {
-          let operator = currentStr.slice(matchStart)
+          let nonTerm = currentStr.slice(matchStart)
 
-          if (this.ruleNames[i] === 'quote') {
+          if (rule.type === 'quote') {
             quotes = true
           }
 
           if (matchStart > 0 ) {
-            // We've found an operator at the end of a search term
+            // We've found a nonTerm at the end of a term
             // EX: termAND or term) or term" or term' '  (with a space at the end)
-            // Add it to tokens before the operator
             let term = currentStr.slice(0, matchStart)
-            tokens.push(createToken(term, 'term', currentPosition - operator.length))
+            tokens.push(Token.create(term, 'term', currentPosition - nonTerm.length))
           }
 
-          tokens.push(createToken(operator, rule.type, currentPosition))
+          tokens.push(Token.create(nonTerm, rule.type, currentPosition, rule.operation))
 
           currentStr = ''
         }
@@ -47,19 +47,19 @@ class Lexer {
     if (currentStr !== '') {
       // We're iterated to the end of the search string but we have some
       // unmatched string remaining, must be a term
-      tokens.push(createToken(currentStr, 'term', searchStr.length - 1))
+      tokens.push(Token.create(currentStr, 'term', searchStr.length - 1))
     }
 
     if (quotes) {
       tokens = createTermsFromQuotes(tokens)
       tokens = removeTokens(tokens, (token) => {
-        return token.value === this.rules.quote.name
+        return token.type === this.rules.quote.type
       })
     }
     tokens = stripRepeatedWhiteSpace(tokens)
-    tokens = convertWhiteSpaceToDefaultOperator(tokens, '+')
+    tokens = convertWhiteSpaceToDefaultOperator(tokens, this.defaultOperation)
     tokens = removeTokens(tokens, (token) => {
-      return token.value === this.rules.space.name
+      return token.type === this.rules.space.type
     })
 
     return tokens
@@ -88,20 +88,19 @@ function stripRepeatedWhiteSpace(tokens) {
   return newTokens
 }
 
-function convertWhiteSpaceToDefaultOperator(tokens, defaultOperator) {
-
+function convertWhiteSpaceToDefaultOperator(tokens, defaultOperation) {
   for (let i = 0; i < tokens.length; i++) {
     let previousToken = i === 0 ? {type: null} : tokens[i - 1]
     let currentToken = tokens[i]
     let nextToken = i + 1 === tokens.length ? {type: null} : tokens[i + 1]
 
     if (previousToken.type === 'term' && nextToken.type === 'term') {
-      // Using the whitespace start and end works becuase the only valid
-      // options will be + (and) or - (or)
-      let newToken = createToken(
-        defaultOperator,
+      // This will be a token with a value of ' ', but a type and operation or an operator
+      let newToken = Token.create(
+        currentToken.value,
         'operator',
-        currentToken.position.end
+        currentToken.position.end,
+        defaultOperation
       )
       tokens.splice(i, 1, newToken)
     }
@@ -109,21 +108,6 @@ function convertWhiteSpaceToDefaultOperator(tokens, defaultOperator) {
 
   return tokens
 }
-
-function stripWhiteSpace(tokens) {
-  const newTokens = []
-
-  while(tokens.length) {
-    let currentToken = tokens.shift()
-
-    if (currentToken.type !== 'whitespace') {
-      newTokens.push(currentToken)
-    }
-  }
-
-  return newTokens
-}
-
 
 function createTermsFromQuotes(tokens) {
   const newTokens = []
@@ -135,8 +119,8 @@ function createTermsFromQuotes(tokens) {
     let currentToken = tokens.shift()
 
     if (quoteMode) {
-        if (currentToken.value === `"`) {
-          newTokens.push(createToken(currentValue, 'term', currentToken.position.end - 1))
+        if (currentToken.type === `quote`) {
+          newTokens.push(Token.create(currentValue, 'term', currentToken.position.end - 1))
           newTokens.push(currentToken)
           currentValue = ''
           quoteMode = false
@@ -146,7 +130,7 @@ function createTermsFromQuotes(tokens) {
         }
     }
     else {
-      if (currentToken.value === `"`) {
+      if (currentToken.type === `quote`) {
         newTokens.push(currentToken)
         lastQuoteToken = currentToken
         quoteMode = true
@@ -164,33 +148,6 @@ function createTermsFromQuotes(tokens) {
   return newTokens
 }
 
-function stripQuotes(tokens) {
-  const newTokens = []
-
-  while(tokens.length) {
-    let currentToken = tokens.shift()
-
-    if (currentToken.type !== 'quote') {
-      newTokens.push(currentToken)
-    }
-  }
-
-  return newTokens
-}
-
-function createToken(value, type, currentPosition) {
-  const startPosition = calcStart(currentPosition, value.length)
-  const endPosition = calcEnd(startPosition, value.length)
-  return new Token(value, type, startPosition, endPosition)
-}
-
-/*
-  If test returns false, token is not removed
-  EX: function below will remove all quote tokens
-  function (token) {
-    return token.value === 'quote'
-  }
-*/
 
 function removeTokens(tokens, test) {
   const newTokens = []
@@ -204,16 +161,6 @@ function removeTokens(tokens, test) {
   }
 
   return newTokens
-}
-
-// Assumes zero based index
-function calcStart(position, length) {
-  return position - (length - 1)
-}
-
-// Assumes zero based index
-function calcEnd(position, length) {
-  return position + (length - 1)
 }
 
 module.exports = Lexer

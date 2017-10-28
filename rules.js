@@ -1,21 +1,19 @@
 class Rule {
-  constructor(name, type = 'operator') {
-    this.name = name
+  constructor(pattern, operation, type = 'operator') {
+    this.pattern = pattern
+    this.operation = operation
     this.type = type
   }
 
   test(str) {
-    return str.indexOf(this.name)
+    return str.search(this.pattern)
   }
 
-  length() {
-    return this.name.length
-  }
 }
 
 class EscapeableRule extends Rule {
-  constructor(name, type) {
-    super(name, type)
+  constructor(name, operation, type) {
+    super(name, operation, type)
   }
 
   test(str) {
@@ -34,14 +32,14 @@ class EscapeableRule extends Rule {
 }
 
 module.exports = {
-  and: new Rule('AND'),
-  plus: new Rule('+'),
-  or: new Rule('OR'),
-  tilde: new Rule('~'),
-  not: new Rule('NOT'),
-  minus: new Rule('-'),
-  openParen: new Rule('(', 'grouping'),
-  closeParen: new Rule(')', 'grouping'),
-  quote: new EscapeableRule('"', 'grouping'),
-  space: new Rule(' ', 'whitespace')
+  and: new Rule(/AND/g, 'AND'),
+  plus: new Rule(/\+/g, 'AND'),
+  or: new Rule(/OR/g, 'OR'),
+  tilde: new Rule(/~/g, 'OR'),
+  not: new Rule(/NOT/g, 'NOT'),
+  minus: new Rule(/-/g, 'NOT'),
+  openParen: new Rule(/\(/g, 'open', 'grouping'),
+  closeParen: new Rule(/\)/g, 'close','grouping'),
+  quote: new EscapeableRule(/"/g, undefined, 'quote'),
+  space: new Rule(/\s/g, undefined, 'whitespace')
 }
