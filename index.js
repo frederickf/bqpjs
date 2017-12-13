@@ -9,13 +9,11 @@ const ruleNames = ['and', 'plus', 'or', 'tilde', 'not', 'minus', 'openParen', 'c
 
 const lexer = new Lexer(rules, ruleNames, 'AND')
 const tokens = lexer.createTokens(searchStr)
+//console.log('tokens: ', tokens, '\n')
 
 const parser = new Parser()
-const syntax = parser.createAbstractSyntaxTree(tokens)
-
-console.log('tokens', tokens)
-console.log()
-console.log('syntax', syntax)
+const syntax = parser.createRpn(tokens)
+console.log('RPN: ', JSON.stringify(syntax, null, 2))
 
 
 // No quetes inside quetes?
