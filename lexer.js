@@ -52,14 +52,14 @@ class Lexer {
 
     if (quotes) {
       tokens = createTermsFromQuotes(tokens)
-      tokens = removeTokens(tokens, (token) => {
-        return token.type === this.rules.quote.type
-      })
     }
+
     tokens = stripRepeatedWhiteSpace(tokens)
-    tokens = convertWhiteSpaceToDefaultOperator(tokens, this.defaultOperation)
-    tokens = removeTokens(tokens, (token) => {
-      return token.type === this.rules.space.type
+    if (this.defaultOperation) {
+      tokens = convertWhiteSpaceToDefaultOperator(tokens, this.defaultOperation)
+    }
+    tokens = tokens.filter((token) => {
+      return token.type !== this.rules.space.type
     })
 
     return tokens
@@ -68,41 +68,48 @@ class Lexer {
 
 function stripRepeatedWhiteSpace(tokens) {
   const newTokens = []
-  let whiteSpaceMode = false
+  let previousToken = {type: null}
 
   while(tokens.length) {
     let currentToken = tokens.shift()
 
     if (currentToken.type === 'whitespace') {
-      if (!whiteSpaceMode) {
+      if (previousToken.type !== 'whitespace') {
         newTokens.push(currentToken)
-        whiteSpaceMode = true
       }
     }
     else {
       newTokens.push(currentToken)
-      whiteSpaceMode = false
     }
+
+    previousToken = currentToken
   }
 
   return newTokens
 }
 
 function convertWhiteSpaceToDefaultOperator(tokens, defaultOperation) {
+  const dummyToken = {type: null, operation: null}
   for (let i = 0; i < tokens.length; i++) {
     let previousToken = i === 0 ? {type: null} : tokens[i - 1]
     let currentToken = tokens[i]
     let nextToken = i + 1 === tokens.length ? {type: null} : tokens[i + 1]
 
-    if (previousToken.type === 'term' && nextToken.type === 'term') {
-      // This will be a token with a value of ' ', but a type and operation or an operator
-      let newToken = Token.create(
-        currentToken.value,
-        'operator',
-        currentToken.position.end,
-        defaultOperation
-      )
-      tokens.splice(i, 1, newToken)
+    if (currentToken.type === 'whitespace') {
+      if (
+        (previousToken.type === 'term' && nextToken.type === 'term') ||
+        (previousToken.operation === 'close' && nextToken.operation === 'open') ||
+        (nextToken.operation === 'NOT' && (previousToken.type === 'term' || previousToken.operation === 'close'))
+      ) {
+        // This will be a token with a value of ' ', but a type and operation of an operator
+        let newToken = Token.create(
+          currentToken.value,
+          'operator',
+          currentToken.position.end,
+          defaultOperation
+        )
+        tokens.splice(i, 1, newToken)
+      }
     }
   }
 
@@ -121,7 +128,6 @@ function createTermsFromQuotes(tokens) {
     if (quoteMode) {
         if (currentToken.type === `quote`) {
           newTokens.push(Token.create(currentValue, 'term', currentToken.position.end - 1))
-          newTokens.push(currentToken)
           currentValue = ''
           quoteMode = false
         }
@@ -131,7 +137,6 @@ function createTermsFromQuotes(tokens) {
     }
     else {
       if (currentToken.type === `quote`) {
-        newTokens.push(currentToken)
         lastQuoteToken = currentToken
         quoteMode = true
       }
@@ -143,21 +148,6 @@ function createTermsFromQuotes(tokens) {
 
   if (quoteMode) {
     throw new Error(`Unclosed quote at ${lastQuoteToken.position.start}`)
-  }
-
-  return newTokens
-}
-
-
-function removeTokens(tokens, test) {
-  const newTokens = []
-
-  while(tokens.length) {
-    let currentToken = tokens.shift()
-
-    if (!test(currentToken)) {
-      newTokens.push(currentToken)
-    }
   }
 
   return newTokens
