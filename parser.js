@@ -1,3 +1,5 @@
+const Token = require('./token')
+
 const operators = {
   'NOT': {
     precedence: 3
@@ -22,21 +24,21 @@ class Parser {
     let output = []
     const operatorStack = []
 
-    for (let tokenIdx = 0; tokenIdx < tokens.length; tokenIdx++) {
-      let currentToken = tokens[tokenIdx]
+    for (let tokenIndex = 0; tokenIndex < tokens.length; tokenIndex++) {
+      let currentToken = tokens[tokenIndex]
 
       //console.log('currentToken', currentToken)
 
-      if (isTerm(currentToken)) {
+      if (Token.isTerm(currentToken)) {
         output.push(currentToken)
       }
-      else if (isOpenParen(currentToken)) {
+      else if (Token.isOpenParen(currentToken)) {
         operatorStack.push(currentToken)
       }
-      else if (isCloseParen(currentToken)) {
+      else if (Token.isCloseParen(currentToken)) {
         while(operatorStack.length > 0) {
           let lastIndex = operatorStack.length - 1
-          if (isOpenParen(operatorStack[lastIndex])) {
+          if (Token.isOpenParen(operatorStack[lastIndex])) {
             operatorStack.pop()
             break
           }
@@ -45,7 +47,7 @@ class Parser {
           }
         }
       }
-      else if (isOperator(currentToken)) {
+      else if (Token.isOperator(currentToken)) {
         while(operatorStack.length > 0) {
           let lastIndex = operatorStack.length - 1
           let lastItemInOperatorStack = operators[operatorStack[lastIndex].operation]
@@ -64,7 +66,7 @@ class Parser {
         throw new Error('Unenexpected token: ', currentToken)
       }
 
-      //console.log('tokenIdx', tokenIdx)
+      //console.log('tokenIndex', tokenIndex)
       //console.log('operatorStack', operatorStack)
       //console.log('output', output)
       //console.log()
@@ -81,22 +83,5 @@ class Parser {
   }
 
 }
-
-function isTerm(token) {
-  return (token.type === 'term')
-}
-
-function isOpenParen(token) {
-  return (token.type === 'grouping' && token.operation === 'open')
-}
-
-function isCloseParen(token) {
-  return (token.type === 'grouping' && token.operation === 'close')
-}
-
-function isOperator(token) {
-  return (token.operation in operators)
-}
-
 
 module.exports = Parser

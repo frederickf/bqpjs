@@ -9,6 +9,30 @@ class Token {
     }
   }
 
+  static isTerm(token) {
+    return (token.type === 'term')
+  }
+
+  static isOpenParen(token) {
+    return (token.type === 'grouping' && token.operation === 'open')
+  }
+
+  static isCloseParen(token) {
+    return (token.type === 'grouping' && token.operation === 'close')
+  }
+
+  static isOperator(token) {
+    return (token.type === 'operator')
+  }
+
+  static isBinaryOperator(token) {
+    return (Token.isOperator(token) && (token.operation === 'AND' || token.operation === 'OR'))
+  }
+
+  static isUnaryOperator(token) {
+    return (Token.isOperator(token) && token.operation === 'NOT')
+  }
+
   static create(value, type, currentPosition, operation) {
     const startPosition = calcStart(currentPosition, value.length)
     const endPosition = calcEnd(startPosition, value.length)
