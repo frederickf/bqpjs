@@ -65,7 +65,7 @@ class Lexer {
 
       currentPosition++
     }
-
+    
     // console.log(tokens)
 
     // Fix quotes

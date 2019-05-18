@@ -1,25 +1,5 @@
 const Token = require('./token')
 
-// class ValidationRule {
-//   constructor(tests, errorCb) {
-//     this.tests = tests
-//     this.errorCb = errorCb
-//   }
-//
-//   test(token) {
-//     let inValid = true
-//     this.tests.forEach((test) => {
-//       if(test(token)) {
-//         inValid = false
-//       }
-//     })
-//     if (inValid) {
-//       this.errorCb(token.position.start)
-//     }
-//
-//   }
-// }
-
 // Given a token, returns the tests necessary to determine next valid token
 function getDefaultTests(token) {
   const tests = {
