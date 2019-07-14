@@ -50,4 +50,4 @@ function calcEnd(position, length) {
   return position + (length - 1)
 }
 
-module.exports = Token
+export default Token

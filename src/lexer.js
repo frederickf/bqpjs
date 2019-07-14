@@ -1,4 +1,4 @@
-const Token = require('./token')
+import Token from './token'
 
 class Lexer {
 
@@ -153,4 +153,4 @@ function createTermsFromQuotes(tokens) {
   return newTokens
 }
 
-module.exports = Lexer
+export default Lexer

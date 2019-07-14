@@ -31,7 +31,9 @@ class EscapeableRule extends Rule {
   }
 }
 
-module.exports = {
+// This will export the same object reference. Is there a way to export a new
+// each time? Maybe export a functin that returns an object?
+export default {
   and: new Rule(/AND/g, 'AND'),
   plus: new Rule(/\+/g, 'AND'),
   or: new Rule(/OR/g, 'OR'),

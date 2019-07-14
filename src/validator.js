@@ -1,4 +1,4 @@
-const Token = require('./token')
+import Token from './token'
 
 // Given a token, returns the tests necessary to determine next valid token
 function getDefaultTests(token) {
@@ -26,7 +26,7 @@ function invalidTokenError(token) {
   throw new Error(`Invalid token "${token.value}" at position ${token.position.start}`)
 }
 
-module.exports = function (tokens) {
+function validator(tokens) {
   const openParenPostions = []
   let tests = [Token.isTerm, Token.isOpenParen, Token.isUnaryOperator]
 
@@ -77,3 +77,5 @@ module.exports = function (tokens) {
     throw new Error(`Expected ) to match ( at ${openParenPostions[lastIndex]}`)
   }
 }
+
+export default validator

@@ -41,4 +41,4 @@ class ExpressionTree {
   }
 }
 
-module.exports = ExpressionTree
+export default ExpressionTree

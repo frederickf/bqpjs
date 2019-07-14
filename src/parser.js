@@ -1,4 +1,4 @@
-const Token = require('./token')
+import Token from './token'
 
 const operators = {
   'NOT': {
@@ -84,4 +84,4 @@ class Parser {
 
 }
 
-module.exports = Parser
+export default Parser
