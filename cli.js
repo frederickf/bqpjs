@@ -13,4 +13,4 @@ catch(error) {
 
 console.log('Tokens: ', JSON.stringify(results.tokens, null, 2), '\n')
 console.log('RPN: ', JSON.stringify(results.rpn, null, 2), '\n')
-console.log('Tree: ', JSON.stringify(results.tree, null, 4), '\n')
+console.log('Tree: ', JSON.stringify(results.tree, null, 2), '\n')
