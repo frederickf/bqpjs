@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const { operations, has, search } = require('./lib')
-const bqp = require('../dist/bundle.cjs')
+const bqpjs = require('../dist/bundle.cjs')
 
 const rpnQuery = (rpn) => {
   return (data) => {
@@ -41,7 +41,7 @@ if (!booleanQuery) {
 
 let parsed
 try {
-  parsed = bqp(booleanQuery)
+  parsed = bqpjs(booleanQuery)
 }
 catch(error) {
   console.log(error.message)

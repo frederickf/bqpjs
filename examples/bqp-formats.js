@@ -1,5 +1,5 @@
 const path = require('path')
-const bqp = require('../dist/bundle.cjs')
+const bqpjs = require('../dist/bundle.cjs')
 
 const searchStr = process.argv[2]
 if (!searchStr) {
@@ -9,7 +9,7 @@ if (!searchStr) {
 
 let results
 try {
-  results = bqp(searchStr)
+  results = bqpjs(searchStr)
 }
 catch(error) {
   console.log(error.message)
