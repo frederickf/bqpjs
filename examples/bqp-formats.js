@@ -1,6 +1,10 @@
-const bqp = require('./dist/bundle.cjs')
+const bqp = require('../dist/bundle.cjs')
 
-let searchStr = process.argv[2]
+const searchStr = process.argv[2]
+if (!searchStr) {
+  console.log('Usage: $ node bqp-formats.js "Boolean query here"')
+  process.exit(1)
+}
 
 let results
 try {
