@@ -30,7 +30,9 @@ export default function (searchStr) {
   }
 
   return {
-    tokens: tokens,
+    // tokens aren't really a part of the interface, but I'm exposing them
+    // to make it easier to see what is happening
+    _tokens: tokens,
     rpn: rpn,
     tree: expressionTree.root
   }

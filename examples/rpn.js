@@ -1,4 +1,5 @@
 const fs = require('fs')
+const path = require('path')
 const { operations, has, search } = require('./lib')
 const bqp = require('../dist/bundle.cjs')
 
@@ -34,7 +35,7 @@ catch(error) {
 
 const booleanQuery = process.argv[2]
 if (!booleanQuery) {
-  console.log('Usage: $ node rpn.js "Boolean query here"')
+  console.log(`Usage: $ node ${path.basename(__filename)} "Boolean query here"`)
   process.exit(1)
 }
 

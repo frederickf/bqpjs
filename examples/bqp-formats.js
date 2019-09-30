@@ -1,8 +1,9 @@
+const path = require('path')
 const bqp = require('../dist/bundle.cjs')
 
 const searchStr = process.argv[2]
 if (!searchStr) {
-  console.log('Usage: $ node bqp-formats.js "Boolean query here"')
+  console.log(`Usage: $ node ${path.basename(__filename)} "Boolean query here"`)
   process.exit(1)
 }
 
@@ -15,6 +16,6 @@ catch(error) {
   process.exit(1)
 }
 
-console.log('Tokens: ', JSON.stringify(results.tokens, null, 2), '\n')
+console.log('Tokens: ', JSON.stringify(results._tokens, null, 2), '\n')
 console.log('RPN: ', JSON.stringify(results.rpn, null, 2), '\n')
 console.log('Tree: ', JSON.stringify(results.tree, null, 2), '\n')
