@@ -97,7 +97,7 @@ class Lexer {
     }
 
     if (currentStr !== '') {
-      // We're iterated to the end of the search string but we have some
+      // We've iterated to the end of the search string but we have some
       // unmatched string remaining, must be a term
       tokens.push(Token.create(currentStr, 'term', searchStr.length - 1));
     }
@@ -214,7 +214,6 @@ class Rule {
   test(str) {
     return str.search(this.pattern)
   }
-
 }
 
 class EscapeableRule extends Rule {
@@ -237,8 +236,6 @@ class EscapeableRule extends Rule {
   }
 }
 
-// This will export the same object reference. Is there a way to export a new
-// each time? Maybe export a functin that returns an object?
 var rules = {
   and: new Rule(/AND/g, 'AND'),
   plus: new Rule(/\+/g, 'AND'),
@@ -350,14 +347,13 @@ class Parser {
 
   }
 
+  //This is an implementation of Djikstra's Shunting Yard.
   createRpn(tokens) {
     let output = [];
     const operatorStack = [];
 
     for (let tokenIndex = 0; tokenIndex < tokens.length; tokenIndex++) {
       let currentToken = tokens[tokenIndex];
-
-      //console.log('currentToken', currentToken)
 
       if (Token.isTerm(currentToken)) {
         output.push(currentToken);
@@ -382,7 +378,8 @@ class Parser {
           let lastIndex = operatorStack.length - 1;
           let lastItemInOperatorStack = operators[operatorStack[lastIndex].operation];
           let currentOperator = operators[currentToken.operation];
-          // This is the conditional described in djikstra's paper. It works when all operators are left associative.
+          // This is the conditional described in djikstra's paper.
+          // It works when all operators are left associative.
           if (lastItemInOperatorStack.precedence >= currentOperator.precedence) {
             output.push(operatorStack.pop());
           }
@@ -395,11 +392,6 @@ class Parser {
       else {
         throw new Error('Unenexpected token: ', currentToken)
       }
-
-      //console.log('tokenIndex', tokenIndex)
-      //console.log('operatorStack', operatorStack)
-      //console.log('output', output)
-      //console.log()
     }
 
     // Affix any remaining operators
@@ -407,11 +399,8 @@ class Parser {
       output = output.concat(operatorStack.reverse());
     }
 
-    //console.log('final output', output)
-
     return output
   }
-
 }
 
 class Node {

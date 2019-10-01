@@ -20,14 +20,13 @@ class Parser {
 
   }
 
+  //This is an implementation of Djikstra's Shunting Yard.
   createRpn(tokens) {
     let output = []
     const operatorStack = []
 
     for (let tokenIndex = 0; tokenIndex < tokens.length; tokenIndex++) {
       let currentToken = tokens[tokenIndex]
-
-      //console.log('currentToken', currentToken)
 
       if (Token.isTerm(currentToken)) {
         output.push(currentToken)
@@ -52,7 +51,8 @@ class Parser {
           let lastIndex = operatorStack.length - 1
           let lastItemInOperatorStack = operators[operatorStack[lastIndex].operation]
           let currentOperator = operators[currentToken.operation]
-          // This is the conditional described in djikstra's paper. It works when all operators are left associative.
+          // This is the conditional described in djikstra's paper.
+          // It works when all operators are left associative.
           if (lastItemInOperatorStack.precedence >= currentOperator.precedence) {
             output.push(operatorStack.pop())
           }
@@ -65,11 +65,6 @@ class Parser {
       else {
         throw new Error('Unenexpected token: ', currentToken)
       }
-
-      //console.log('tokenIndex', tokenIndex)
-      //console.log('operatorStack', operatorStack)
-      //console.log('output', output)
-      //console.log()
     }
 
     // Affix any remaining operators
@@ -77,11 +72,8 @@ class Parser {
       output = output.concat(operatorStack.reverse())
     }
 
-    //console.log('final output', output)
-
     return output
   }
-
 }
 
 export default Parser

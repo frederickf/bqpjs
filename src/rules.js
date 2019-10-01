@@ -8,7 +8,6 @@ class Rule {
   test(str) {
     return str.search(this.pattern)
   }
-
 }
 
 class EscapeableRule extends Rule {
@@ -31,8 +30,6 @@ class EscapeableRule extends Rule {
   }
 }
 
-// This will export the same object reference. Is there a way to export a new
-// each time? Maybe export a functin that returns an object?
 export default {
   and: new Rule(/AND/g, 'AND'),
   plus: new Rule(/\+/g, 'AND'),

@@ -45,7 +45,7 @@ class Lexer {
     }
 
     if (currentStr !== '') {
-      // We're iterated to the end of the search string but we have some
+      // We've iterated to the end of the search string but we have some
       // unmatched string remaining, must be a term
       tokens.push(Token.create(currentStr, 'term', searchStr.length - 1))
     }
@@ -89,7 +89,6 @@ function stripRepeatedWhiteSpace(tokens) {
 }
 
 function convertWhiteSpaceToDefaultOperator(tokens, defaultOperation) {
-  const dummyToken = {type: null, operation: null}
   for (let i = 0; i < tokens.length; i++) {
     let previousToken = i === 0 ? {type: null} : tokens[i - 1]
     let currentToken = tokens[i]
