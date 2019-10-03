@@ -1,44 +1,33 @@
-class Node {
-  constructor(data, type, left, right) {
-    this.data = data
-    this.type = type
-    this.left = left
-    this.right = right
-  }
+const node = (obj, left = null, right = null) => {
+  return Object.assign({}, obj, {left, right})
 }
 
-class ExpressionTree {
-  constructor() {
-    this.root = null
+const rpnToTree = (acc, symbol) => {
+  if (symbol.type === 'term') {
+    acc.push(node(symbol))
   }
-
-  createFromRpn(rpn) {
-    const stack = []
-
-    for (let i = 0; i < rpn.length; i++) {
-      let currentSymbol = rpn[i]
-      if (currentSymbol.type === 'term') {
-        stack.push(new Node(currentSymbol.value, 'term', null, null))
-      }
-      if (currentSymbol.type === 'operator') {
-        if (currentSymbol.operation === 'NOT') {
-          let right = stack.pop()
-          stack.push(new Node(currentSymbol.operation, 'operator', null, right))
-        }
-        else {
-          let right = stack.pop()
-          let left = stack.pop()
-          stack.push(new Node(currentSymbol.operation, 'operator', left, right))
-        }
-      }
-    }
-    if (stack.length === 1) {
-      this.root = stack[0]
+  if (symbol.type === 'operator') {
+    if (symbol.operation === 'NOT') {
+      let right = acc.pop()
+      acc.push(node(symbol, null, right))
     }
     else {
-      throw new Error('Too many nodes in stack')
+      let right = acc.pop()
+      let left = acc.pop()
+      acc.push(node(symbol, left, right))
     }
+  }
+  return acc
+}
+
+const createExpressionTree = (rpn) => {
+  const tree = rpn.reduce(rpnToTree, []).shift()
+  if (tree) {
+    return tree
+  }
+  else {
+    throw new Error('Unable to create expression tree. Too many symbols')
   }
 }
 
-export default ExpressionTree
+export default createExpressionTree

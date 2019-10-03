@@ -40,8 +40,7 @@ function validator(tokens) {
     }
   }
 
-  for (let i = 0; i < tokens.length; i++) {
-    let currentToken = tokens[i]
+  for (const currentToken of tokens) {
     let inValid = true
 
     tests.forEach((test) => {
@@ -76,6 +75,8 @@ function validator(tokens) {
     const lastIndex = openParenPostions.length - 1
     throw new Error(`Expected ) to match ( at ${openParenPostions[lastIndex]}`)
   }
+
+  return tokens
 }
 
 export default validator

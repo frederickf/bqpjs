@@ -1,39 +1,24 @@
-import Lexer from './lexer'
 import rules from './rules'
-import validator from './validator'
-import Parser from './parser'
-import ExpressionTree from './expression-tree'
+import createTokenizer from './tokenizer'
+import createRpn from './create-rpn'
+import createExpressionTree from './expression-tree'
 
 const ruleNames = ['and', 'plus', 'or', 'tilde', 'not', 'minus', 'openParen', 'closeParen', 'quote', 'space']
 const defaultOperation = 'AND'
 
-const lexer = new Lexer(rules, ruleNames, defaultOperation)
-const parser = new Parser()
-const expressionTree = new ExpressionTree()
+const selectedRules = ruleNames.filter((name)=>name in rules).map((name)=>rules[name])
+const tokenize = createTokenizer(selectedRules, defaultOperation)
 
-export default function (searchStr) {
-  const tokens = lexer.createTokens(searchStr)
-  try {
-    validator(tokens)
-  }
-  catch(error) {
-    throw new Error(`Validation Error: ${error.message}`)
-  }
-
-  const rpn = parser.createRpn(tokens)
-
-  try {
-    expressionTree.createFromRpn(rpn)
-  }
-  catch(error) {
-    throw new Error(`ExpresionTree Error: ${error}`)
-  }
+export default function bqpjs(searchStr) {
+  let tokens = tokenize(searchStr)
+  let rpn = createRpn(tokens)
+  let expressionTree = createExpressionTree(rpn)
 
   return {
     // tokens aren't really a part of the interface, but I'm exposing them
     // to make it easier to see what is happening
     _tokens: tokens,
     rpn: rpn,
-    tree: expressionTree.root
+    tree: expressionTree
   }
 }
