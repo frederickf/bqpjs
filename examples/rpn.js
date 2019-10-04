@@ -29,7 +29,7 @@ try {
   testData = JSON.parse(fs.readFileSync('test-data.json'))
 }
 catch(error) {
-  console.log('You must use ./data-gen.js before running this script')
+  console.log('You must use data-gen.js before running this script')
   process.exit(1)
 }
 

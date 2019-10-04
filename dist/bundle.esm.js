@@ -179,7 +179,7 @@ function createTokenizer(userRules, defaultOperation) {
     let tokens = createBaseTokens(searchStr, userRules);
 
     // This must be done before whitespace is stripped because quotes can
-    // contain whitespace we need to preserver as part of a term
+    // contain whitespace we need to be preserved as part of a term
     if (!!tokens.find(token=>token.type === rules.quote.type)) {
       tokens = createTermsFromQuotes(tokens);
     }
@@ -189,12 +189,10 @@ function createTokenizer(userRules, defaultOperation) {
     if (defaultOperation) {
       tokens = convertWhiteSpaceToDefaultOperator(tokens, defaultOperation);
     }
-console.log(tokens);
+
     tokens = tokens.filter((token) => {
       return token.type !== rules.space.type
     });
-
-
 
     tokens = validator(tokens);
 

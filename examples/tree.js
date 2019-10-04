@@ -10,14 +10,14 @@ const treeQuery = (node) => {
         const left = postOrder(node.left)
         const right = postOrder(node.right)
         if (node.type === 'term') {
-          return data.filter(has(node.data))
+          return data.filter(has(node.value))
         }
         if (node.type === 'operator') {
-          if (node.data === 'NOT') {
+          if (node.value === 'NOT') {
             return operations['NOT'](data)(left || right)
           }
           else {
-            let operation = operations[node.data]
+            let operation = operations[node.operation]
             return operation(left)(right)
           }
         }
@@ -32,7 +32,7 @@ try {
   testData = JSON.parse(fs.readFileSync('test-data.json'))
 }
 catch(error) {
-  console.log('You must use ./data-gen.js before running this script')
+  console.log('You must use data-gen.js before running this script')
   process.exit(1)
 }
 
