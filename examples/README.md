@@ -15,8 +15,14 @@ This will create a file in this directory called test-data.json.
 Once you have some data to query you can use rpn.js and tree.js to run queries.
 
 ```
-$node rpn.js 'Boolean Query here'
-$node tree.js 'Boolean Query here'
+$ node rpn.js 'Boolean query here'
+$ node tree.js 'Boolean query here'
 ```
 
-The output of each file is the same. You can look at the contents of the file to see an example of how to process each data structure.
+You can look at the contents of the file to see an example of how to process each data structure. The output of each file is the same for a given query.
+
+If you want to see the output of bqpjs() itself, you can run bqpjs-formats.js
+
+```
+$ node bqpjs-formats.js 'Boolean query here'
+```
