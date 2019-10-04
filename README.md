@@ -106,11 +106,11 @@ Quarries will be evaluated in the following order in the absence of parenthesis:
 ### Short tokens
 The following short tokens are supported:
 
-| Token | Name | Character |
-|---|---|:---:|
- AND | Plus sign | `+`
- OR | Tilde | `~`
- NOT | Minus sign | `-`
+| Token | Name | Character | Example |
+|---|---|:---:|---|
+ AND | Plus sign | `+` | 'A + B'
+ OR | Tilde | `~` | 'A ~ B'
+ NOT | Minus sign | `-` | A + B - C
 
 
 ## Not Features...yet
