@@ -11,7 +11,7 @@
     "build": "npm run rollup:esm && npm run rollup:cjs"
   },
   "author": "ffeibel@gmail.com",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "rollup": "^1.12.3"
   }
