@@ -108,9 +108,9 @@ The following short tokens are supported:
 
 | Token | Name | Character | Example |
 |---|---|:---:|---|
- AND | Plus sign | `+` | 'A + B'
- OR | Tilde | `~` | 'A ~ B'
- NOT | Minus sign | `-` | A + B - C
+ AND | Plus sign | `+` | `A + B`
+ OR | Tilde | `~` | `A ~ B`
+ NOT | Minus sign | `-` | `A + B - C`
 
 
 ## Not Features...yet
