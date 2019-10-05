@@ -2,13 +2,13 @@
   "name": "bqpjs",
   "version": "0.0.1",
   "description": "Boolean Queary Parser JS",
-  "main": "bundle.cjs.js",
-  "module": "bundle.esm.js",
+  "main": "dist/bundle.cjs.js",
+  "module": "dist/bundle.esm.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "rollup:cjs": "rollup src/main.js -o dist/bundle.cjs.js -f cjs",
-    "rollup:esm": "rollup src/main.js -o dist/bundle.esm.js -f esm",
-    "build": "npm run rollup:esm && npm run rollup:cjs"
+    "build": "rollup --config",
+    "build:watch": "npm run build -- --watch",
+    "prepare": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "ffeibel@gmail.com",
   "license": "MIT",
