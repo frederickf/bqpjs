@@ -3,12 +3,14 @@ import rules from './rules'
 import validator from './validator'
 
 export default function createTokenizer(userRules, defaultOperation) {
-  return function (searchStr) {
-    let tokens = createBaseTokens(searchStr, userRules)
+  return function tokenize(searchStr) {
+    let matches = findMatches(searchStr, userRules)
+
+    let tokens = matches.flatMap(matchToTokens)
 
     // This must be done before whitespace is stripped because quotes can
-    // contain whitespace we need to be preserved as part of a term
-    if (!!tokens.find(token=>token.type === rules.quote.type)) {
+    // contain whitespace which needs to be preserved as part of a term
+    if (!!tokens.find(token => token.type === rules.quote.type)) {
       tokens = createTermsFromQuotes(tokens)
     }
 
@@ -18,9 +20,7 @@ export default function createTokenizer(userRules, defaultOperation) {
       tokens = convertWhiteSpaceToDefaultOperator(tokens, defaultOperation)
     }
 
-    tokens = tokens.filter((token) => {
-      return token.type !== rules.space.type
-    })
+    tokens = tokens.filter(isNot(rules.space.type))
 
     tokens = validator(tokens)
 
@@ -28,37 +28,63 @@ export default function createTokenizer(userRules, defaultOperation) {
   }
 }
 
-function createBaseTokens(searchStr, rules) {
-  let currentStr = ''
-  let tokens = []
+function findMatches(searchStr, rules) {
+  // We can't make tokens yet because not all matches will be exactly a token
+  // For example, termAND will match the AND test
+  let matches = []
+  let subStr = ''
 
-  for (let currentIndex = 0; currentIndex < searchStr.length; currentIndex++) {
-    currentStr += searchStr.charAt(currentIndex)
+  for (let currentIdx = 0; currentIdx < searchStr.length; currentIdx++) {
+    subStr += searchStr.charAt(currentIdx)
 
     for (const rule of rules) {
-      let matchStart = rule.test(currentStr)
-
+      let matchStart = rule.test(subStr)
       if (matchStart !== -1 ) {
-        let nonTerm = currentStr.slice(matchStart)
-
-        if (matchStart > 0 ) {
-          // We've found a nonTerm at the end of a term
-          // EX: termAND or term) or term" or term' '  (with a space at the end)
-          let term = currentStr.slice(0, matchStart)
-          tokens.push(Token.create(term, 'term', currentIndex - nonTerm.length))
-        }
-
-        tokens.push(Token.create(nonTerm, rule.type, currentIndex, rule.operation))
-        currentStr = ''
+        matches.push({
+          subStr,
+          currentIdx,
+          matchStart,
+          type: rule.type,
+          operation: rule.operation
+        })
+        subStr = ''
         break
       }
     }
   }
 
-  if (currentStr !== '') {
+  if (subStr !== '') {
     // We've iterated to the end of the search string but we have some
-    // unmatched string remaining, must be a term
-    tokens.push(Token.create(currentStr, 'term', searchStr.length - 1))
+    // unmatched string remaining, which can only be a term
+    matches.push({
+      subStr,
+      currentIdx: searchStr.length - 1,
+      matchStart: -1,
+      type: 'term',
+      operation: undefined
+    })
+  }
+
+  return matches
+}
+
+function matchToTokens(match) {
+  let tokens = []
+  const { subStr, matchStart, currentIdx, type, operation} = match
+
+  if (matchStart >= 0) {
+    let nonTerm = subStr.slice(matchStart)
+    if (matchStart > 0 ) {
+      // We've found a match prefixed with a term
+      // EX: termAND or term) or term" or term' '  (with a space at the end)
+      let term = subStr.slice(0, matchStart)
+      tokens.push(Token.create(term, 'term', currentIdx - nonTerm.length))
+    }
+    tokens.push(Token.create(nonTerm, type, currentIdx, operation))
+  }
+  else {
+    // Anything not a match must be a term
+    tokens.push(Token.create(subStr, 'term', currentIdx - 1))
   }
 
   return tokens
@@ -97,7 +123,7 @@ function convertWhiteSpaceToDefaultOperator(tokens, defaultOperation) {
         (previousToken.operation === 'close' && nextToken.type === 'term') ||
         // (A B) (C D)
         (previousToken.operation === 'close' && nextToken.operation === 'open') ||
-        // A NOT B or A NOT (B C)
+        // A NOT B or (B OR C) NOT A
         (nextToken.operation === 'NOT' && (previousToken.type === 'term' || previousToken.operation === 'close'))
       ) {
         // This will be a token with a value of ' ', but a type and operation of an operator
@@ -123,14 +149,14 @@ function createTermsFromQuotes(tokens) {
 
   for (const currentToken of tokens) {
     if (quoteMode) {
-        if (currentToken.type === `quote`) {
-          newTokens.push(Token.create(currentValue, 'term', currentToken.position.end - 1))
-          currentValue = ''
-          quoteMode = false
-        }
-        else {
-          currentValue += currentToken.value
-        }
+      if (currentToken.type === `quote`) {
+        newTokens.push(Token.create(currentValue, 'term', currentToken.position.end - 1))
+        currentValue = ''
+        quoteMode = false
+      }
+      else {
+        currentValue += currentToken.value
+      }
     }
     else {
       if (currentToken.type === `quote`) {
@@ -148,4 +174,8 @@ function createTermsFromQuotes(tokens) {
   }
 
   return newTokens
+}
+
+function isNot(type) {
+  return token => token.type !== type
 }
