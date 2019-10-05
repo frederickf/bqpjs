@@ -2,6 +2,10 @@
   "name": "bqpjs",
   "version": "0.0.1",
   "description": "Boolean Queary Parser JS",
+  "files": [
+    "dist/bundle.cjs.js",
+    "dist/bundle.esm.js"
+  ],
   "main": "dist/bundle.cjs.js",
   "module": "dist/bundle.esm.js",
   "scripts": {
