@@ -33,7 +33,7 @@ function validator(tokens) {
   if (tokens.length === 1) {
     if (Token.isTerm(tokens[0])) {
       // No need to continue validating a single term quary
-      return
+      return tokens
     }
     else {
       invalidTokenError(tokens[0])

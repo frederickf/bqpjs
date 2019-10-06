@@ -1,0 +1,2382 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`"A AND B" AND C 1`] = `
+Object {
+  "_tokens": Array [
+    Token {
+      "position": Object {
+        "end": 7,
+        "start": 1,
+      },
+      "type": "term",
+      "value": "A AND B",
+    },
+    Token {
+      "operation": "AND",
+      "position": Object {
+        "end": 12,
+        "start": 10,
+      },
+      "type": "operator",
+      "value": "AND",
+    },
+    Token {
+      "position": Object {
+        "end": 14,
+        "start": 14,
+      },
+      "type": "term",
+      "value": "C",
+    },
+  ],
+  "rpn": Array [
+    Token {
+      "position": Object {
+        "end": 7,
+        "start": 1,
+      },
+      "type": "term",
+      "value": "A AND B",
+    },
+    Token {
+      "position": Object {
+        "end": 14,
+        "start": 14,
+      },
+      "type": "term",
+      "value": "C",
+    },
+    Token {
+      "operation": "AND",
+      "position": Object {
+        "end": 12,
+        "start": 10,
+      },
+      "type": "operator",
+      "value": "AND",
+    },
+  ],
+  "tree": Object {
+    "left": Object {
+      "left": null,
+      "position": Object {
+        "end": 7,
+        "start": 1,
+      },
+      "right": null,
+      "type": "term",
+      "value": "A AND B",
+    },
+    "operation": "AND",
+    "position": Object {
+      "end": 12,
+      "start": 10,
+    },
+    "right": Object {
+      "left": null,
+      "position": Object {
+        "end": 14,
+        "start": 14,
+      },
+      "right": null,
+      "type": "term",
+      "value": "C",
+    },
+    "type": "operator",
+    "value": "AND",
+  },
+}
+`;
+
+exports[`"A B" AND C 1`] = `
+Object {
+  "_tokens": Array [
+    Token {
+      "position": Object {
+        "end": 3,
+        "start": 1,
+      },
+      "type": "term",
+      "value": "A B",
+    },
+    Token {
+      "operation": "AND",
+      "position": Object {
+        "end": 8,
+        "start": 6,
+      },
+      "type": "operator",
+      "value": "AND",
+    },
+    Token {
+      "position": Object {
+        "end": 10,
+        "start": 10,
+      },
+      "type": "term",
+      "value": "C",
+    },
+  ],
+  "rpn": Array [
+    Token {
+      "position": Object {
+        "end": 3,
+        "start": 1,
+      },
+      "type": "term",
+      "value": "A B",
+    },
+    Token {
+      "position": Object {
+        "end": 10,
+        "start": 10,
+      },
+      "type": "term",
+      "value": "C",
+    },
+    Token {
+      "operation": "AND",
+      "position": Object {
+        "end": 8,
+        "start": 6,
+      },
+      "type": "operator",
+      "value": "AND",
+    },
+  ],
+  "tree": Object {
+    "left": Object {
+      "left": null,
+      "position": Object {
+        "end": 3,
+        "start": 1,
+      },
+      "right": null,
+      "type": "term",
+      "value": "A B",
+    },
+    "operation": "AND",
+    "position": Object {
+      "end": 8,
+      "start": 6,
+    },
+    "right": Object {
+      "left": null,
+      "position": Object {
+        "end": 10,
+        "start": 10,
+      },
+      "right": null,
+      "type": "term",
+      "value": "C",
+    },
+    "type": "operator",
+    "value": "AND",
+  },
+}
+`;
+
+exports[`- A 1`] = `
+Object {
+  "_tokens": Array [
+    Token {
+      "operation": "NOT",
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "type": "operator",
+      "value": "-",
+    },
+    Token {
+      "position": Object {
+        "end": 2,
+        "start": 2,
+      },
+      "type": "term",
+      "value": "A",
+    },
+  ],
+  "rpn": Array [
+    Token {
+      "position": Object {
+        "end": 2,
+        "start": 2,
+      },
+      "type": "term",
+      "value": "A",
+    },
+    Token {
+      "operation": "NOT",
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "type": "operator",
+      "value": "-",
+    },
+  ],
+  "tree": Object {
+    "left": null,
+    "operation": "NOT",
+    "position": Object {
+      "end": 0,
+      "start": 0,
+    },
+    "right": Object {
+      "left": null,
+      "position": Object {
+        "end": 2,
+        "start": 2,
+      },
+      "right": null,
+      "type": "term",
+      "value": "A",
+    },
+    "type": "operator",
+    "value": "-",
+  },
+}
+`;
+
+exports[`-A 1`] = `
+Object {
+  "_tokens": Array [
+    Token {
+      "operation": "NOT",
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "type": "operator",
+      "value": "-",
+    },
+    Token {
+      "position": Object {
+        "end": 1,
+        "start": 1,
+      },
+      "type": "term",
+      "value": "A",
+    },
+  ],
+  "rpn": Array [
+    Token {
+      "position": Object {
+        "end": 1,
+        "start": 1,
+      },
+      "type": "term",
+      "value": "A",
+    },
+    Token {
+      "operation": "NOT",
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "type": "operator",
+      "value": "-",
+    },
+  ],
+  "tree": Object {
+    "left": null,
+    "operation": "NOT",
+    "position": Object {
+      "end": 0,
+      "start": 0,
+    },
+    "right": Object {
+      "left": null,
+      "position": Object {
+        "end": 1,
+        "start": 1,
+      },
+      "right": null,
+      "type": "term",
+      "value": "A",
+    },
+    "type": "operator",
+    "value": "-",
+  },
+}
+`;
+
+exports[`A + B 1`] = `
+Object {
+  "_tokens": Array [
+    Token {
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "type": "term",
+      "value": "A",
+    },
+    Token {
+      "operation": "AND",
+      "position": Object {
+        "end": 2,
+        "start": 2,
+      },
+      "type": "operator",
+      "value": "+",
+    },
+    Token {
+      "position": Object {
+        "end": 4,
+        "start": 4,
+      },
+      "type": "term",
+      "value": "B",
+    },
+  ],
+  "rpn": Array [
+    Token {
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "type": "term",
+      "value": "A",
+    },
+    Token {
+      "position": Object {
+        "end": 4,
+        "start": 4,
+      },
+      "type": "term",
+      "value": "B",
+    },
+    Token {
+      "operation": "AND",
+      "position": Object {
+        "end": 2,
+        "start": 2,
+      },
+      "type": "operator",
+      "value": "+",
+    },
+  ],
+  "tree": Object {
+    "left": Object {
+      "left": null,
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "right": null,
+      "type": "term",
+      "value": "A",
+    },
+    "operation": "AND",
+    "position": Object {
+      "end": 2,
+      "start": 2,
+    },
+    "right": Object {
+      "left": null,
+      "position": Object {
+        "end": 4,
+        "start": 4,
+      },
+      "right": null,
+      "type": "term",
+      "value": "B",
+    },
+    "type": "operator",
+    "value": "+",
+  },
+}
+`;
+
+exports[`A ~ B 1`] = `
+Object {
+  "_tokens": Array [
+    Token {
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "type": "term",
+      "value": "A",
+    },
+    Token {
+      "operation": "OR",
+      "position": Object {
+        "end": 2,
+        "start": 2,
+      },
+      "type": "operator",
+      "value": "~",
+    },
+    Token {
+      "position": Object {
+        "end": 4,
+        "start": 4,
+      },
+      "type": "term",
+      "value": "B",
+    },
+  ],
+  "rpn": Array [
+    Token {
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "type": "term",
+      "value": "A",
+    },
+    Token {
+      "position": Object {
+        "end": 4,
+        "start": 4,
+      },
+      "type": "term",
+      "value": "B",
+    },
+    Token {
+      "operation": "OR",
+      "position": Object {
+        "end": 2,
+        "start": 2,
+      },
+      "type": "operator",
+      "value": "~",
+    },
+  ],
+  "tree": Object {
+    "left": Object {
+      "left": null,
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "right": null,
+      "type": "term",
+      "value": "A",
+    },
+    "operation": "OR",
+    "position": Object {
+      "end": 2,
+      "start": 2,
+    },
+    "right": Object {
+      "left": null,
+      "position": Object {
+        "end": 4,
+        "start": 4,
+      },
+      "right": null,
+      "type": "term",
+      "value": "B",
+    },
+    "type": "operator",
+    "value": "~",
+  },
+}
+`;
+
+exports[`A 1`] = `
+Object {
+  "_tokens": Array [
+    Token {
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "type": "term",
+      "value": "A",
+    },
+  ],
+  "rpn": Array [
+    Token {
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "type": "term",
+      "value": "A",
+    },
+  ],
+  "tree": Object {
+    "left": null,
+    "position": Object {
+      "end": 0,
+      "start": 0,
+    },
+    "right": null,
+    "type": "term",
+    "value": "A",
+  },
+}
+`;
+
+exports[`A AND ((B OR C) AND E) NOT D 1`] = `
+Object {
+  "_tokens": Array [
+    Token {
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "type": "term",
+      "value": "A",
+    },
+    Token {
+      "operation": "AND",
+      "position": Object {
+        "end": 4,
+        "start": 2,
+      },
+      "type": "operator",
+      "value": "AND",
+    },
+    Token {
+      "operation": "open",
+      "position": Object {
+        "end": 6,
+        "start": 6,
+      },
+      "type": "grouping",
+      "value": "(",
+    },
+    Token {
+      "operation": "open",
+      "position": Object {
+        "end": 7,
+        "start": 7,
+      },
+      "type": "grouping",
+      "value": "(",
+    },
+    Token {
+      "position": Object {
+        "end": 8,
+        "start": 8,
+      },
+      "type": "term",
+      "value": "B",
+    },
+    Token {
+      "operation": "OR",
+      "position": Object {
+        "end": 11,
+        "start": 10,
+      },
+      "type": "operator",
+      "value": "OR",
+    },
+    Token {
+      "position": Object {
+        "end": 13,
+        "start": 13,
+      },
+      "type": "term",
+      "value": "C",
+    },
+    Token {
+      "operation": "close",
+      "position": Object {
+        "end": 14,
+        "start": 14,
+      },
+      "type": "grouping",
+      "value": ")",
+    },
+    Token {
+      "operation": "AND",
+      "position": Object {
+        "end": 18,
+        "start": 16,
+      },
+      "type": "operator",
+      "value": "AND",
+    },
+    Token {
+      "position": Object {
+        "end": 20,
+        "start": 20,
+      },
+      "type": "term",
+      "value": "E",
+    },
+    Token {
+      "operation": "close",
+      "position": Object {
+        "end": 21,
+        "start": 21,
+      },
+      "type": "grouping",
+      "value": ")",
+    },
+    Token {
+      "operation": "AND",
+      "position": Object {
+        "end": 22,
+        "start": 22,
+      },
+      "type": "operator",
+      "value": " ",
+    },
+    Token {
+      "operation": "NOT",
+      "position": Object {
+        "end": 25,
+        "start": 23,
+      },
+      "type": "operator",
+      "value": "NOT",
+    },
+    Token {
+      "position": Object {
+        "end": 27,
+        "start": 27,
+      },
+      "type": "term",
+      "value": "D",
+    },
+  ],
+  "rpn": Array [
+    Token {
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "type": "term",
+      "value": "A",
+    },
+    Token {
+      "position": Object {
+        "end": 8,
+        "start": 8,
+      },
+      "type": "term",
+      "value": "B",
+    },
+    Token {
+      "position": Object {
+        "end": 13,
+        "start": 13,
+      },
+      "type": "term",
+      "value": "C",
+    },
+    Token {
+      "operation": "OR",
+      "position": Object {
+        "end": 11,
+        "start": 10,
+      },
+      "type": "operator",
+      "value": "OR",
+    },
+    Token {
+      "position": Object {
+        "end": 20,
+        "start": 20,
+      },
+      "type": "term",
+      "value": "E",
+    },
+    Token {
+      "operation": "AND",
+      "position": Object {
+        "end": 18,
+        "start": 16,
+      },
+      "type": "operator",
+      "value": "AND",
+    },
+    Token {
+      "operation": "AND",
+      "position": Object {
+        "end": 4,
+        "start": 2,
+      },
+      "type": "operator",
+      "value": "AND",
+    },
+    Token {
+      "position": Object {
+        "end": 27,
+        "start": 27,
+      },
+      "type": "term",
+      "value": "D",
+    },
+    Token {
+      "operation": "NOT",
+      "position": Object {
+        "end": 25,
+        "start": 23,
+      },
+      "type": "operator",
+      "value": "NOT",
+    },
+    Token {
+      "operation": "AND",
+      "position": Object {
+        "end": 22,
+        "start": 22,
+      },
+      "type": "operator",
+      "value": " ",
+    },
+  ],
+  "tree": Object {
+    "left": Object {
+      "left": Object {
+        "left": null,
+        "position": Object {
+          "end": 0,
+          "start": 0,
+        },
+        "right": null,
+        "type": "term",
+        "value": "A",
+      },
+      "operation": "AND",
+      "position": Object {
+        "end": 4,
+        "start": 2,
+      },
+      "right": Object {
+        "left": Object {
+          "left": Object {
+            "left": null,
+            "position": Object {
+              "end": 8,
+              "start": 8,
+            },
+            "right": null,
+            "type": "term",
+            "value": "B",
+          },
+          "operation": "OR",
+          "position": Object {
+            "end": 11,
+            "start": 10,
+          },
+          "right": Object {
+            "left": null,
+            "position": Object {
+              "end": 13,
+              "start": 13,
+            },
+            "right": null,
+            "type": "term",
+            "value": "C",
+          },
+          "type": "operator",
+          "value": "OR",
+        },
+        "operation": "AND",
+        "position": Object {
+          "end": 18,
+          "start": 16,
+        },
+        "right": Object {
+          "left": null,
+          "position": Object {
+            "end": 20,
+            "start": 20,
+          },
+          "right": null,
+          "type": "term",
+          "value": "E",
+        },
+        "type": "operator",
+        "value": "AND",
+      },
+      "type": "operator",
+      "value": "AND",
+    },
+    "operation": "AND",
+    "position": Object {
+      "end": 22,
+      "start": 22,
+    },
+    "right": Object {
+      "left": null,
+      "operation": "NOT",
+      "position": Object {
+        "end": 25,
+        "start": 23,
+      },
+      "right": Object {
+        "left": null,
+        "position": Object {
+          "end": 27,
+          "start": 27,
+        },
+        "right": null,
+        "type": "term",
+        "value": "D",
+      },
+      "type": "operator",
+      "value": "NOT",
+    },
+    "type": "operator",
+    "value": " ",
+  },
+}
+`;
+
+exports[`A AND (B OR C) 1`] = `
+Object {
+  "_tokens": Array [
+    Token {
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "type": "term",
+      "value": "A",
+    },
+    Token {
+      "operation": "AND",
+      "position": Object {
+        "end": 4,
+        "start": 2,
+      },
+      "type": "operator",
+      "value": "AND",
+    },
+    Token {
+      "operation": "open",
+      "position": Object {
+        "end": 6,
+        "start": 6,
+      },
+      "type": "grouping",
+      "value": "(",
+    },
+    Token {
+      "position": Object {
+        "end": 7,
+        "start": 7,
+      },
+      "type": "term",
+      "value": "B",
+    },
+    Token {
+      "operation": "OR",
+      "position": Object {
+        "end": 10,
+        "start": 9,
+      },
+      "type": "operator",
+      "value": "OR",
+    },
+    Token {
+      "position": Object {
+        "end": 12,
+        "start": 12,
+      },
+      "type": "term",
+      "value": "C",
+    },
+    Token {
+      "operation": "close",
+      "position": Object {
+        "end": 13,
+        "start": 13,
+      },
+      "type": "grouping",
+      "value": ")",
+    },
+  ],
+  "rpn": Array [
+    Token {
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "type": "term",
+      "value": "A",
+    },
+    Token {
+      "position": Object {
+        "end": 7,
+        "start": 7,
+      },
+      "type": "term",
+      "value": "B",
+    },
+    Token {
+      "position": Object {
+        "end": 12,
+        "start": 12,
+      },
+      "type": "term",
+      "value": "C",
+    },
+    Token {
+      "operation": "OR",
+      "position": Object {
+        "end": 10,
+        "start": 9,
+      },
+      "type": "operator",
+      "value": "OR",
+    },
+    Token {
+      "operation": "AND",
+      "position": Object {
+        "end": 4,
+        "start": 2,
+      },
+      "type": "operator",
+      "value": "AND",
+    },
+  ],
+  "tree": Object {
+    "left": Object {
+      "left": null,
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "right": null,
+      "type": "term",
+      "value": "A",
+    },
+    "operation": "AND",
+    "position": Object {
+      "end": 4,
+      "start": 2,
+    },
+    "right": Object {
+      "left": Object {
+        "left": null,
+        "position": Object {
+          "end": 7,
+          "start": 7,
+        },
+        "right": null,
+        "type": "term",
+        "value": "B",
+      },
+      "operation": "OR",
+      "position": Object {
+        "end": 10,
+        "start": 9,
+      },
+      "right": Object {
+        "left": null,
+        "position": Object {
+          "end": 12,
+          "start": 12,
+        },
+        "right": null,
+        "type": "term",
+        "value": "C",
+      },
+      "type": "operator",
+      "value": "OR",
+    },
+    "type": "operator",
+    "value": "AND",
+  },
+}
+`;
+
+exports[`A AND (B OR C) NOT D 1`] = `
+Object {
+  "_tokens": Array [
+    Token {
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "type": "term",
+      "value": "A",
+    },
+    Token {
+      "operation": "AND",
+      "position": Object {
+        "end": 4,
+        "start": 2,
+      },
+      "type": "operator",
+      "value": "AND",
+    },
+    Token {
+      "operation": "open",
+      "position": Object {
+        "end": 6,
+        "start": 6,
+      },
+      "type": "grouping",
+      "value": "(",
+    },
+    Token {
+      "position": Object {
+        "end": 7,
+        "start": 7,
+      },
+      "type": "term",
+      "value": "B",
+    },
+    Token {
+      "operation": "OR",
+      "position": Object {
+        "end": 10,
+        "start": 9,
+      },
+      "type": "operator",
+      "value": "OR",
+    },
+    Token {
+      "position": Object {
+        "end": 12,
+        "start": 12,
+      },
+      "type": "term",
+      "value": "C",
+    },
+    Token {
+      "operation": "close",
+      "position": Object {
+        "end": 13,
+        "start": 13,
+      },
+      "type": "grouping",
+      "value": ")",
+    },
+    Token {
+      "operation": "AND",
+      "position": Object {
+        "end": 14,
+        "start": 14,
+      },
+      "type": "operator",
+      "value": " ",
+    },
+    Token {
+      "operation": "NOT",
+      "position": Object {
+        "end": 17,
+        "start": 15,
+      },
+      "type": "operator",
+      "value": "NOT",
+    },
+    Token {
+      "position": Object {
+        "end": 19,
+        "start": 19,
+      },
+      "type": "term",
+      "value": "D",
+    },
+  ],
+  "rpn": Array [
+    Token {
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "type": "term",
+      "value": "A",
+    },
+    Token {
+      "position": Object {
+        "end": 7,
+        "start": 7,
+      },
+      "type": "term",
+      "value": "B",
+    },
+    Token {
+      "position": Object {
+        "end": 12,
+        "start": 12,
+      },
+      "type": "term",
+      "value": "C",
+    },
+    Token {
+      "operation": "OR",
+      "position": Object {
+        "end": 10,
+        "start": 9,
+      },
+      "type": "operator",
+      "value": "OR",
+    },
+    Token {
+      "operation": "AND",
+      "position": Object {
+        "end": 4,
+        "start": 2,
+      },
+      "type": "operator",
+      "value": "AND",
+    },
+    Token {
+      "position": Object {
+        "end": 19,
+        "start": 19,
+      },
+      "type": "term",
+      "value": "D",
+    },
+    Token {
+      "operation": "NOT",
+      "position": Object {
+        "end": 17,
+        "start": 15,
+      },
+      "type": "operator",
+      "value": "NOT",
+    },
+    Token {
+      "operation": "AND",
+      "position": Object {
+        "end": 14,
+        "start": 14,
+      },
+      "type": "operator",
+      "value": " ",
+    },
+  ],
+  "tree": Object {
+    "left": Object {
+      "left": Object {
+        "left": null,
+        "position": Object {
+          "end": 0,
+          "start": 0,
+        },
+        "right": null,
+        "type": "term",
+        "value": "A",
+      },
+      "operation": "AND",
+      "position": Object {
+        "end": 4,
+        "start": 2,
+      },
+      "right": Object {
+        "left": Object {
+          "left": null,
+          "position": Object {
+            "end": 7,
+            "start": 7,
+          },
+          "right": null,
+          "type": "term",
+          "value": "B",
+        },
+        "operation": "OR",
+        "position": Object {
+          "end": 10,
+          "start": 9,
+        },
+        "right": Object {
+          "left": null,
+          "position": Object {
+            "end": 12,
+            "start": 12,
+          },
+          "right": null,
+          "type": "term",
+          "value": "C",
+        },
+        "type": "operator",
+        "value": "OR",
+      },
+      "type": "operator",
+      "value": "AND",
+    },
+    "operation": "AND",
+    "position": Object {
+      "end": 14,
+      "start": 14,
+    },
+    "right": Object {
+      "left": null,
+      "operation": "NOT",
+      "position": Object {
+        "end": 17,
+        "start": 15,
+      },
+      "right": Object {
+        "left": null,
+        "position": Object {
+          "end": 19,
+          "start": 19,
+        },
+        "right": null,
+        "type": "term",
+        "value": "D",
+      },
+      "type": "operator",
+      "value": "NOT",
+    },
+    "type": "operator",
+    "value": " ",
+  },
+}
+`;
+
+exports[`A AND B 1`] = `
+Object {
+  "_tokens": Array [
+    Token {
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "type": "term",
+      "value": "A",
+    },
+    Token {
+      "operation": "AND",
+      "position": Object {
+        "end": 4,
+        "start": 2,
+      },
+      "type": "operator",
+      "value": "AND",
+    },
+    Token {
+      "position": Object {
+        "end": 6,
+        "start": 6,
+      },
+      "type": "term",
+      "value": "B",
+    },
+  ],
+  "rpn": Array [
+    Token {
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "type": "term",
+      "value": "A",
+    },
+    Token {
+      "position": Object {
+        "end": 6,
+        "start": 6,
+      },
+      "type": "term",
+      "value": "B",
+    },
+    Token {
+      "operation": "AND",
+      "position": Object {
+        "end": 4,
+        "start": 2,
+      },
+      "type": "operator",
+      "value": "AND",
+    },
+  ],
+  "tree": Object {
+    "left": Object {
+      "left": null,
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "right": null,
+      "type": "term",
+      "value": "A",
+    },
+    "operation": "AND",
+    "position": Object {
+      "end": 4,
+      "start": 2,
+    },
+    "right": Object {
+      "left": null,
+      "position": Object {
+        "end": 6,
+        "start": 6,
+      },
+      "right": null,
+      "type": "term",
+      "value": "B",
+    },
+    "type": "operator",
+    "value": "AND",
+  },
+}
+`;
+
+exports[`A AND B OR C 1`] = `
+Object {
+  "_tokens": Array [
+    Token {
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "type": "term",
+      "value": "A",
+    },
+    Token {
+      "operation": "AND",
+      "position": Object {
+        "end": 4,
+        "start": 2,
+      },
+      "type": "operator",
+      "value": "AND",
+    },
+    Token {
+      "position": Object {
+        "end": 6,
+        "start": 6,
+      },
+      "type": "term",
+      "value": "B",
+    },
+    Token {
+      "operation": "OR",
+      "position": Object {
+        "end": 9,
+        "start": 8,
+      },
+      "type": "operator",
+      "value": "OR",
+    },
+    Token {
+      "position": Object {
+        "end": 11,
+        "start": 11,
+      },
+      "type": "term",
+      "value": "C",
+    },
+  ],
+  "rpn": Array [
+    Token {
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "type": "term",
+      "value": "A",
+    },
+    Token {
+      "position": Object {
+        "end": 6,
+        "start": 6,
+      },
+      "type": "term",
+      "value": "B",
+    },
+    Token {
+      "operation": "AND",
+      "position": Object {
+        "end": 4,
+        "start": 2,
+      },
+      "type": "operator",
+      "value": "AND",
+    },
+    Token {
+      "position": Object {
+        "end": 11,
+        "start": 11,
+      },
+      "type": "term",
+      "value": "C",
+    },
+    Token {
+      "operation": "OR",
+      "position": Object {
+        "end": 9,
+        "start": 8,
+      },
+      "type": "operator",
+      "value": "OR",
+    },
+  ],
+  "tree": Object {
+    "left": Object {
+      "left": Object {
+        "left": null,
+        "position": Object {
+          "end": 0,
+          "start": 0,
+        },
+        "right": null,
+        "type": "term",
+        "value": "A",
+      },
+      "operation": "AND",
+      "position": Object {
+        "end": 4,
+        "start": 2,
+      },
+      "right": Object {
+        "left": null,
+        "position": Object {
+          "end": 6,
+          "start": 6,
+        },
+        "right": null,
+        "type": "term",
+        "value": "B",
+      },
+      "type": "operator",
+      "value": "AND",
+    },
+    "operation": "OR",
+    "position": Object {
+      "end": 9,
+      "start": 8,
+    },
+    "right": Object {
+      "left": null,
+      "position": Object {
+        "end": 11,
+        "start": 11,
+      },
+      "right": null,
+      "type": "term",
+      "value": "C",
+    },
+    "type": "operator",
+    "value": "OR",
+  },
+}
+`;
+
+exports[`A AND B OR C NOT E 1`] = `
+Object {
+  "_tokens": Array [
+    Token {
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "type": "term",
+      "value": "A",
+    },
+    Token {
+      "operation": "AND",
+      "position": Object {
+        "end": 4,
+        "start": 2,
+      },
+      "type": "operator",
+      "value": "AND",
+    },
+    Token {
+      "position": Object {
+        "end": 6,
+        "start": 6,
+      },
+      "type": "term",
+      "value": "B",
+    },
+    Token {
+      "operation": "OR",
+      "position": Object {
+        "end": 9,
+        "start": 8,
+      },
+      "type": "operator",
+      "value": "OR",
+    },
+    Token {
+      "position": Object {
+        "end": 11,
+        "start": 11,
+      },
+      "type": "term",
+      "value": "C",
+    },
+    Token {
+      "operation": "AND",
+      "position": Object {
+        "end": 12,
+        "start": 12,
+      },
+      "type": "operator",
+      "value": " ",
+    },
+    Token {
+      "operation": "NOT",
+      "position": Object {
+        "end": 15,
+        "start": 13,
+      },
+      "type": "operator",
+      "value": "NOT",
+    },
+    Token {
+      "position": Object {
+        "end": 17,
+        "start": 17,
+      },
+      "type": "term",
+      "value": "E",
+    },
+  ],
+  "rpn": Array [
+    Token {
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "type": "term",
+      "value": "A",
+    },
+    Token {
+      "position": Object {
+        "end": 6,
+        "start": 6,
+      },
+      "type": "term",
+      "value": "B",
+    },
+    Token {
+      "operation": "AND",
+      "position": Object {
+        "end": 4,
+        "start": 2,
+      },
+      "type": "operator",
+      "value": "AND",
+    },
+    Token {
+      "position": Object {
+        "end": 11,
+        "start": 11,
+      },
+      "type": "term",
+      "value": "C",
+    },
+    Token {
+      "position": Object {
+        "end": 17,
+        "start": 17,
+      },
+      "type": "term",
+      "value": "E",
+    },
+    Token {
+      "operation": "NOT",
+      "position": Object {
+        "end": 15,
+        "start": 13,
+      },
+      "type": "operator",
+      "value": "NOT",
+    },
+    Token {
+      "operation": "AND",
+      "position": Object {
+        "end": 12,
+        "start": 12,
+      },
+      "type": "operator",
+      "value": " ",
+    },
+    Token {
+      "operation": "OR",
+      "position": Object {
+        "end": 9,
+        "start": 8,
+      },
+      "type": "operator",
+      "value": "OR",
+    },
+  ],
+  "tree": Object {
+    "left": Object {
+      "left": Object {
+        "left": null,
+        "position": Object {
+          "end": 0,
+          "start": 0,
+        },
+        "right": null,
+        "type": "term",
+        "value": "A",
+      },
+      "operation": "AND",
+      "position": Object {
+        "end": 4,
+        "start": 2,
+      },
+      "right": Object {
+        "left": null,
+        "position": Object {
+          "end": 6,
+          "start": 6,
+        },
+        "right": null,
+        "type": "term",
+        "value": "B",
+      },
+      "type": "operator",
+      "value": "AND",
+    },
+    "operation": "OR",
+    "position": Object {
+      "end": 9,
+      "start": 8,
+    },
+    "right": Object {
+      "left": Object {
+        "left": null,
+        "position": Object {
+          "end": 11,
+          "start": 11,
+        },
+        "right": null,
+        "type": "term",
+        "value": "C",
+      },
+      "operation": "AND",
+      "position": Object {
+        "end": 12,
+        "start": 12,
+      },
+      "right": Object {
+        "left": null,
+        "operation": "NOT",
+        "position": Object {
+          "end": 15,
+          "start": 13,
+        },
+        "right": Object {
+          "left": null,
+          "position": Object {
+            "end": 17,
+            "start": 17,
+          },
+          "right": null,
+          "type": "term",
+          "value": "E",
+        },
+        "type": "operator",
+        "value": "NOT",
+      },
+      "type": "operator",
+      "value": " ",
+    },
+    "type": "operator",
+    "value": "OR",
+  },
+}
+`;
+
+exports[`A B 1`] = `
+Object {
+  "_tokens": Array [
+    Token {
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "type": "term",
+      "value": "A",
+    },
+    Token {
+      "operation": "AND",
+      "position": Object {
+        "end": 1,
+        "start": 1,
+      },
+      "type": "operator",
+      "value": " ",
+    },
+    Token {
+      "position": Object {
+        "end": 2,
+        "start": 2,
+      },
+      "type": "term",
+      "value": "B",
+    },
+  ],
+  "rpn": Array [
+    Token {
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "type": "term",
+      "value": "A",
+    },
+    Token {
+      "position": Object {
+        "end": 2,
+        "start": 2,
+      },
+      "type": "term",
+      "value": "B",
+    },
+    Token {
+      "operation": "AND",
+      "position": Object {
+        "end": 1,
+        "start": 1,
+      },
+      "type": "operator",
+      "value": " ",
+    },
+  ],
+  "tree": Object {
+    "left": Object {
+      "left": null,
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "right": null,
+      "type": "term",
+      "value": "A",
+    },
+    "operation": "AND",
+    "position": Object {
+      "end": 1,
+      "start": 1,
+    },
+    "right": Object {
+      "left": null,
+      "position": Object {
+        "end": 2,
+        "start": 2,
+      },
+      "right": null,
+      "type": "term",
+      "value": "B",
+    },
+    "type": "operator",
+    "value": " ",
+  },
+}
+`;
+
+exports[`A OR B 1`] = `
+Object {
+  "_tokens": Array [
+    Token {
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "type": "term",
+      "value": "A",
+    },
+    Token {
+      "operation": "OR",
+      "position": Object {
+        "end": 3,
+        "start": 2,
+      },
+      "type": "operator",
+      "value": "OR",
+    },
+    Token {
+      "position": Object {
+        "end": 5,
+        "start": 5,
+      },
+      "type": "term",
+      "value": "B",
+    },
+  ],
+  "rpn": Array [
+    Token {
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "type": "term",
+      "value": "A",
+    },
+    Token {
+      "position": Object {
+        "end": 5,
+        "start": 5,
+      },
+      "type": "term",
+      "value": "B",
+    },
+    Token {
+      "operation": "OR",
+      "position": Object {
+        "end": 3,
+        "start": 2,
+      },
+      "type": "operator",
+      "value": "OR",
+    },
+  ],
+  "tree": Object {
+    "left": Object {
+      "left": null,
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "right": null,
+      "type": "term",
+      "value": "A",
+    },
+    "operation": "OR",
+    "position": Object {
+      "end": 3,
+      "start": 2,
+    },
+    "right": Object {
+      "left": null,
+      "position": Object {
+        "end": 5,
+        "start": 5,
+      },
+      "right": null,
+      "type": "term",
+      "value": "B",
+    },
+    "type": "operator",
+    "value": "OR",
+  },
+}
+`;
+
+exports[`A+B 1`] = `
+Object {
+  "_tokens": Array [
+    Token {
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "type": "term",
+      "value": "A",
+    },
+    Token {
+      "operation": "AND",
+      "position": Object {
+        "end": 1,
+        "start": 1,
+      },
+      "type": "operator",
+      "value": "+",
+    },
+    Token {
+      "position": Object {
+        "end": 2,
+        "start": 2,
+      },
+      "type": "term",
+      "value": "B",
+    },
+  ],
+  "rpn": Array [
+    Token {
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "type": "term",
+      "value": "A",
+    },
+    Token {
+      "position": Object {
+        "end": 2,
+        "start": 2,
+      },
+      "type": "term",
+      "value": "B",
+    },
+    Token {
+      "operation": "AND",
+      "position": Object {
+        "end": 1,
+        "start": 1,
+      },
+      "type": "operator",
+      "value": "+",
+    },
+  ],
+  "tree": Object {
+    "left": Object {
+      "left": null,
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "right": null,
+      "type": "term",
+      "value": "A",
+    },
+    "operation": "AND",
+    "position": Object {
+      "end": 1,
+      "start": 1,
+    },
+    "right": Object {
+      "left": null,
+      "position": Object {
+        "end": 2,
+        "start": 2,
+      },
+      "right": null,
+      "type": "term",
+      "value": "B",
+    },
+    "type": "operator",
+    "value": "+",
+  },
+}
+`;
+
+exports[`A~B 1`] = `
+Object {
+  "_tokens": Array [
+    Token {
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "type": "term",
+      "value": "A",
+    },
+    Token {
+      "operation": "OR",
+      "position": Object {
+        "end": 1,
+        "start": 1,
+      },
+      "type": "operator",
+      "value": "~",
+    },
+    Token {
+      "position": Object {
+        "end": 2,
+        "start": 2,
+      },
+      "type": "term",
+      "value": "B",
+    },
+  ],
+  "rpn": Array [
+    Token {
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "type": "term",
+      "value": "A",
+    },
+    Token {
+      "position": Object {
+        "end": 2,
+        "start": 2,
+      },
+      "type": "term",
+      "value": "B",
+    },
+    Token {
+      "operation": "OR",
+      "position": Object {
+        "end": 1,
+        "start": 1,
+      },
+      "type": "operator",
+      "value": "~",
+    },
+  ],
+  "tree": Object {
+    "left": Object {
+      "left": null,
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "right": null,
+      "type": "term",
+      "value": "A",
+    },
+    "operation": "OR",
+    "position": Object {
+      "end": 1,
+      "start": 1,
+    },
+    "right": Object {
+      "left": null,
+      "position": Object {
+        "end": 2,
+        "start": 2,
+      },
+      "right": null,
+      "type": "term",
+      "value": "B",
+    },
+    "type": "operator",
+    "value": "~",
+  },
+}
+`;
+
+exports[`AANDB 1`] = `
+Object {
+  "_tokens": Array [
+    Token {
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "type": "term",
+      "value": "A",
+    },
+    Token {
+      "operation": "AND",
+      "position": Object {
+        "end": 3,
+        "start": 1,
+      },
+      "type": "operator",
+      "value": "AND",
+    },
+    Token {
+      "position": Object {
+        "end": 4,
+        "start": 4,
+      },
+      "type": "term",
+      "value": "B",
+    },
+  ],
+  "rpn": Array [
+    Token {
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "type": "term",
+      "value": "A",
+    },
+    Token {
+      "position": Object {
+        "end": 4,
+        "start": 4,
+      },
+      "type": "term",
+      "value": "B",
+    },
+    Token {
+      "operation": "AND",
+      "position": Object {
+        "end": 3,
+        "start": 1,
+      },
+      "type": "operator",
+      "value": "AND",
+    },
+  ],
+  "tree": Object {
+    "left": Object {
+      "left": null,
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "right": null,
+      "type": "term",
+      "value": "A",
+    },
+    "operation": "AND",
+    "position": Object {
+      "end": 3,
+      "start": 1,
+    },
+    "right": Object {
+      "left": null,
+      "position": Object {
+        "end": 4,
+        "start": 4,
+      },
+      "right": null,
+      "type": "term",
+      "value": "B",
+    },
+    "type": "operator",
+    "value": "AND",
+  },
+}
+`;
+
+exports[`AORB 1`] = `
+Object {
+  "_tokens": Array [
+    Token {
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "type": "term",
+      "value": "A",
+    },
+    Token {
+      "operation": "OR",
+      "position": Object {
+        "end": 2,
+        "start": 1,
+      },
+      "type": "operator",
+      "value": "OR",
+    },
+    Token {
+      "position": Object {
+        "end": 3,
+        "start": 3,
+      },
+      "type": "term",
+      "value": "B",
+    },
+  ],
+  "rpn": Array [
+    Token {
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "type": "term",
+      "value": "A",
+    },
+    Token {
+      "position": Object {
+        "end": 3,
+        "start": 3,
+      },
+      "type": "term",
+      "value": "B",
+    },
+    Token {
+      "operation": "OR",
+      "position": Object {
+        "end": 2,
+        "start": 1,
+      },
+      "type": "operator",
+      "value": "OR",
+    },
+  ],
+  "tree": Object {
+    "left": Object {
+      "left": null,
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "right": null,
+      "type": "term",
+      "value": "A",
+    },
+    "operation": "OR",
+    "position": Object {
+      "end": 2,
+      "start": 1,
+    },
+    "right": Object {
+      "left": null,
+      "position": Object {
+        "end": 3,
+        "start": 3,
+      },
+      "right": null,
+      "type": "term",
+      "value": "B",
+    },
+    "type": "operator",
+    "value": "OR",
+  },
+}
+`;
+
+exports[`B NOT A 1`] = `
+Object {
+  "_tokens": Array [
+    Token {
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "type": "term",
+      "value": "B",
+    },
+    Token {
+      "operation": "AND",
+      "position": Object {
+        "end": 1,
+        "start": 1,
+      },
+      "type": "operator",
+      "value": " ",
+    },
+    Token {
+      "operation": "NOT",
+      "position": Object {
+        "end": 4,
+        "start": 2,
+      },
+      "type": "operator",
+      "value": "NOT",
+    },
+    Token {
+      "position": Object {
+        "end": 6,
+        "start": 6,
+      },
+      "type": "term",
+      "value": "A",
+    },
+  ],
+  "rpn": Array [
+    Token {
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "type": "term",
+      "value": "B",
+    },
+    Token {
+      "position": Object {
+        "end": 6,
+        "start": 6,
+      },
+      "type": "term",
+      "value": "A",
+    },
+    Token {
+      "operation": "NOT",
+      "position": Object {
+        "end": 4,
+        "start": 2,
+      },
+      "type": "operator",
+      "value": "NOT",
+    },
+    Token {
+      "operation": "AND",
+      "position": Object {
+        "end": 1,
+        "start": 1,
+      },
+      "type": "operator",
+      "value": " ",
+    },
+  ],
+  "tree": Object {
+    "left": Object {
+      "left": null,
+      "position": Object {
+        "end": 0,
+        "start": 0,
+      },
+      "right": null,
+      "type": "term",
+      "value": "B",
+    },
+    "operation": "AND",
+    "position": Object {
+      "end": 1,
+      "start": 1,
+    },
+    "right": Object {
+      "left": null,
+      "operation": "NOT",
+      "position": Object {
+        "end": 4,
+        "start": 2,
+      },
+      "right": Object {
+        "left": null,
+        "position": Object {
+          "end": 6,
+          "start": 6,
+        },
+        "right": null,
+        "type": "term",
+        "value": "A",
+      },
+      "type": "operator",
+      "value": "NOT",
+    },
+    "type": "operator",
+    "value": " ",
+  },
+}
+`;
+
+exports[`NOT A 1`] = `
+Object {
+  "_tokens": Array [
+    Token {
+      "operation": "NOT",
+      "position": Object {
+        "end": 2,
+        "start": 0,
+      },
+      "type": "operator",
+      "value": "NOT",
+    },
+    Token {
+      "position": Object {
+        "end": 4,
+        "start": 4,
+      },
+      "type": "term",
+      "value": "A",
+    },
+  ],
+  "rpn": Array [
+    Token {
+      "position": Object {
+        "end": 4,
+        "start": 4,
+      },
+      "type": "term",
+      "value": "A",
+    },
+    Token {
+      "operation": "NOT",
+      "position": Object {
+        "end": 2,
+        "start": 0,
+      },
+      "type": "operator",
+      "value": "NOT",
+    },
+  ],
+  "tree": Object {
+    "left": null,
+    "operation": "NOT",
+    "position": Object {
+      "end": 2,
+      "start": 0,
+    },
+    "right": Object {
+      "left": null,
+      "position": Object {
+        "end": 4,
+        "start": 4,
+      },
+      "right": null,
+      "type": "term",
+      "value": "A",
+    },
+    "type": "operator",
+    "value": "NOT",
+  },
+}
+`;

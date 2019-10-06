@@ -58,7 +58,7 @@ function findMatches(searchStr, rules) {
     // unmatched string remaining, which can only be a term
     matches.push({
       subStr,
-      currentIdx: searchStr.length - 1,
+      currentIdx: searchStr.length,
       matchStart: -1,
       type: 'term',
       operation: undefined

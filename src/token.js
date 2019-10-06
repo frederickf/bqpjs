@@ -2,7 +2,9 @@ class Token {
   constructor(value, type, operation, start = 0, end = 0) {
     this.value = value
     this.type = type
-    this.operation = operation
+    if (operation) {
+      this.operation = operation
+    }
     this.position = {
       start: start,
       end: end
