@@ -10,7 +10,7 @@ export default function createTokenizer(userRules, defaultOperation) {
 
     // This must be done before whitespace is stripped because quotes can
     // contain whitespace which needs to be preserved as part of a term
-    if (!!tokens.find(token => token.type === rules.quote.type)) {
+    if (tokens.find(token => token.type === rules.quote.type)) {
       tokens = createTermsFromQuotes(tokens)
     }
 
@@ -149,7 +149,7 @@ function createTermsFromQuotes(tokens) {
 
   for (const currentToken of tokens) {
     if (quoteMode) {
-      if (currentToken.type === `quote`) {
+      if (currentToken.type === 'quote') {
         newTokens.push(Token.create(currentValue, 'term', currentToken.position.end - 1))
         currentValue = ''
         quoteMode = false
@@ -159,7 +159,7 @@ function createTermsFromQuotes(tokens) {
       }
     }
     else {
-      if (currentToken.type === `quote`) {
+      if (currentToken.type === 'quote') {
         lastQuoteToken = currentToken
         quoteMode = true
       }

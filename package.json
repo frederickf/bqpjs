@@ -11,6 +11,7 @@
   "scripts": {
     "build": "rollup --config",
     "build:watch": "npm run build -- --watch",
+    "lint": "eslint src",
     "prepare": "npm run build",
     "test": "jest",
     "test:update": "jest -u"
@@ -18,6 +19,7 @@
   "author": "ffeibel@gmail.com",
   "license": "MIT",
   "devDependencies": {
+    "eslint": "^6.5.1",
     "jest": "^24.9.0",
     "rollup": "^1.12.3"
   }

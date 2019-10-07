@@ -63,11 +63,10 @@ function validator(tokens) {
 
     // Make new default rule based on current token and existence of open parens
     tests = getDefaultTests(currentToken)
-
     if (openParenPostions.length > 0) {
-      if (currentToken.type === 'term' || currentToken.operation === 'close')
-      tests = tests.slice(0)
-      tests.push(Token.isCloseParen.bind(Token))
+      if (currentToken.type === 'term' || currentToken.operation === 'close') {
+        tests.push(Token.isCloseParen.bind(Token))
+      }
     }
   }
 

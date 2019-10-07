@@ -22,7 +22,7 @@ class EscapeableRule extends Rule {
       return result
     }
 
-    if (str.charAt(result - 1) === `\\`) {
+    if (str.charAt(result - 1) === '\\') {
       return -1
     }
 

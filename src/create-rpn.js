@@ -13,7 +13,7 @@ const operators = {
   'open': {
     precedence: 0
   }
-};
+}
 
 const createRpn = (tokens) => {
   let output = []

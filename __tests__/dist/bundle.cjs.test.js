@@ -119,6 +119,13 @@ test('should throw unmatched close parenthesis error ', () => {
   .toThrowError(new Error('Invalid token ")" at position 12'))
 })
 
+test('should throw invalid close parenthesis error ', () => {
+  expect(
+    () => {bqpjs('A AND )')}
+  )
+  .toThrowError(new Error('Invalid token ")" at position 6'))
+})
+
 test('should throw unmatched open quote error', () => {
   expect(
     () => {bqpjs('A AND "B OR C')}
