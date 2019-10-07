@@ -2,7 +2,7 @@
 
 Boolean Query Parse JS (BQPJS) aims to be a fully functional Boolean query string parser.
 
-*BQPJS is under active development. Everything is subject to change.*
+**BQPJS is under active development. Everything is subject to change.**
 
 ## How it works
 `bqpjs()` takes a string representing a Boolean query. It parses the query and returns two data structures, one in reverse polish notation and the other a binary tree, that represent the query. Each is a complete representation. It is then up to the developer to process one of those to perform a search.
@@ -64,8 +64,8 @@ let parsed = bqpjs('A AND B')
       "value": "B",
       "type": "term",
       "position": {
-        "start": 6,
-        "end": 6
+        "start": 7,
+        "end": 7
       },
       "left": null,
       "right": null
@@ -111,9 +111,3 @@ The following short tokens are supported:
  AND | Plus sign | `+` | `A + B`
  OR | Tilde | `~` | `A ~ B`
  NOT | Minus sign | `-` | `A + B - C`
-
-
-## Not Features...yet
-
-### Exact vs partial matching
-BQPJS doesn't currently provide a way for the end-user to communicate if they would like exact or partial matches.  
