@@ -15,6 +15,7 @@ const operators = {
   }
 }
 
+// This is an implementation of Dijkstra' Shunting Yard
 const createRpn = (tokens) => {
   let output = []
   const operatorStack = []
@@ -43,8 +44,6 @@ const createRpn = (tokens) => {
         let lastIndex = operatorStack.length - 1
         let lastItemInOperatorStack = operators[operatorStack[lastIndex].operation]
         let currentOperator = operators[token.operation]
-        // This is the conditional described in djikstra's paper.
-        // It works when all operators are left associative.
         if (lastItemInOperatorStack.precedence >= currentOperator.precedence) {
           output.push(operatorStack.pop())
         }
