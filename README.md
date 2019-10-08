@@ -22,9 +22,9 @@ BQPJS supports the following Boolean search syntax:
   * `A NOT B`
 * **Quotations**
   * `"A B" OR A OR B`
-    *  A B` is treated as a single term
+    *  `A B` is treated as a single term. 
   * `"A AND B" OR A OR B`
-    * `A AND B` is treated as a single term
+    * `A AND B` is treated as a single term. `AND` is not evaluated as an operator.
 * **Parenthesis**
   * `(A OR B) AND (C OR D)`
 * **Nested parenthesis**
