@@ -1,7 +1,7 @@
-import Token from './token'
+import Token from '../token'
 
 // Given a token, returns the tests necessary to determine next valid token
-function getDefaultTests(token) {
+const getDefaultTests = (token) => {
   const tests = {
     'term': [Token.isBinaryOperator, Token.isUnaryOperator],
     'NOT': [Token.isTerm, Token.isOpenParen],
@@ -22,11 +22,11 @@ function getDefaultTests(token) {
   }
 }
 
-function invalidTokenError(token) {
+const invalidTokenError = (token) => {
   throw new Error(`Invalid token "${token.value}" at position ${token.position.start}`)
 }
 
-function validator(tokens) {
+const validate = (tokens) => {
   const openParenPostions = []
   let tests = [Token.isTerm, Token.isOpenParen, Token.isUnaryOperator]
 
@@ -78,4 +78,4 @@ function validator(tokens) {
   return tokens
 }
 
-export default validator
+export default validate
