@@ -1,5 +1,7 @@
 import compose from 'compose-function'
 
+export { compose }
+
 export const composeLeft = (...args) => compose(...args.reverse())
 
 export const isNot = (type) => {
@@ -16,4 +18,8 @@ export const reduce = (fn) => {
 
 export const flatMap = (fn) => {
   return (array) => array.flatMap(fn)
+}
+
+export const pluck = (idx) => {
+  return (array) => array[idx]
 }

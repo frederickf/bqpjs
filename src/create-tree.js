@@ -1,3 +1,5 @@
+import { reduce, compose, pluck } from './util'
+
 const node = (obj, left = null, right = null) => {
   return Object.assign({}, obj, {left, right})
 }
@@ -20,14 +22,6 @@ const rpnToTree = (acc, symbol) => {
   return acc
 }
 
-const createExpressionTree = (rpn) => {
-  const tree = rpn.reduce(rpnToTree, []).shift()
-  if (tree) {
-    return tree
-  }
-  else {
-    throw new Error('Unable to create expression tree. Too many symbols')
-  }
-}
+const createTree = compose(pluck(0), reduce(rpnToTree))
 
-export default createExpressionTree
+export default createTree
