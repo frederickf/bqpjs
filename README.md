@@ -22,7 +22,7 @@ BQPJS supports the following Boolean search syntax:
   * `A NOT B`
 * **Quotations**
   * `"A B" OR A OR B`
-    *  `A B` is treated as a single term. 
+    *  `A B` is treated as a single term.
   * `"A AND B" OR A OR B`
     * `A AND B` is treated as a single term. `AND` is not evaluated as an operator.
 * **Parenthesis**
@@ -113,8 +113,8 @@ let parsed = bqpjs('A AND B')
       "value": "B",
       "type": "term",
       "position": {
-        "start": 7,
-        "end": 7
+        "start": 6,
+        "end": 6
       },
       "left": null,
       "right": null
