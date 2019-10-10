@@ -1,5 +1,4 @@
 import rules from './rules'
-//import createTokenizer from './tokenizer'
 import getTokenize from './tokenize'
 import createRpn from './create-rpn'
 import createTree from './create-tree'
