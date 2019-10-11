@@ -40,7 +40,7 @@ BQPJS supports the following Boolean search syntax:
   * `(C AND (A OR B)) NOT D`
 
 ### Order of operations
-Quarries will be evaluated in the following order in the absence of parenthesis:
+Queries will be evaluated in the following order in the absence of parenthesis:
 1. NOT
 2. AND
 3. OR
