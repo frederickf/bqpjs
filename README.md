@@ -1,15 +1,15 @@
 # Boolean Query Parser JS
 
-Boolean Query Parse JS (BQPJS) is Boolean query string parser.
+Boolean Query Parser JS (BQPJS) is Boolean query string parser.
 
 `let parsed = bqpjs('A AND B')`
 
 ## Install
-`npm install bqpjs
+`npm install bqpjs`
+
+BQPJS is under active development. Features and API may not be stable until a 1.x.x release. You may wish to use `--save-exact` to avoid installing breaking changes in the future.
 
 ## Features
-
-BQPJS is under active development. Everything is subject to change. 
 
 ### Syntax
 
@@ -21,12 +21,15 @@ BQPJS supports the following Boolean search syntax:
 * **OR**
   * `A OR B`
 * **NOT**
+  * `NOT B`
   * `A NOT B`
 * **Quotations**
+  * Must be `"`
   * `"A B" OR A OR B`
     *  `A B` is treated as a single term.
   * `"A AND B" OR A OR B`
     * `A AND B` is treated as a single term. `AND` is not evaluated as an operator.
+    * Anything inside quotations will be treated as a single term
 * **Parenthesis**
   * `(A OR B) AND (C OR D)`
 * **Nested parenthesis**
