@@ -2,10 +2,14 @@
 
 Boolean Query Parser JS (BQPJS) is Boolean query string parser.
 
-`let parsed = bqpjs('A AND B')`
+```
+let parsed = bqpjs('A AND B')
+```
 
 ## Install
-`npm install bqpjs`
+```
+npm install bqpjs
+```
 
 BQPJS is under active development. Features and API may not be stable until a 1.x.x release. You may wish to use `--save-exact` to avoid installing breaking changes in the future.
 

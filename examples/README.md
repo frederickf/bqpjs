@@ -1,9 +1,9 @@
 # Examples
 
-The files in this directory offer some command line scripts that act as examples of how to use Boolean Query Parser JS.
+This directory contains command line script showing how to use Boolean Query Parser JS.
 
 ## Generate test data
-Before you can use the example files you must generate some sample data using data-gen.js.
+Before you can use the example files you must generate some data using data-gen.js.
 
 ```
 $ node data-gen.js
@@ -19,7 +19,7 @@ $ node rpn.js 'Boolean query here'
 $ node tree.js 'Boolean query here'
 ```
 
-You can look at the contents of the file to see an example of how to process each data structure. The output of each file is the same for a given query.
+You can look at the contents of the file to see how to process each data structure. The output of each file is the same for a given query.
 
 If you want to see the output of bqpjs() itself, you can run bqpjs-formats.js
 
