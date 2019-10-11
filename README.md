@@ -61,6 +61,12 @@ Input: ```'A OR OR C'```
 
 Output: ```Error: Invalid token "OR" at position 5```
 
+### White space
+White space is ignored.
+* `AANDB` interpreted as `A AND B`
+* 'A&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B' interpreted as `A AND B`
+
+
 ## Example
 `bqpjs()` takes a string representing a Boolean query. It parses the query and returns two data structures, one in reverse polish notation and the other a binary tree, that represent the query. Each is a complete representation. It is then up to the developer to process one of those to perform a search.
 
