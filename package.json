@@ -13,11 +13,25 @@
     "build:watch": "npm run build -- --watch",
     "lint": "eslint src",
     "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm test && npm run lint",
+    "version": "npm run build",
+    "postversion": "git push && git push --tags",
     "test": "jest",
     "test:update": "jest -u"
   },
-  "author": "ffeibel@gmail.com",
+  "author": "frederickf <ffeibel@gmail.com>",
+  "keywords": [
+    "Boolean",
+    "JavaScript",
+    "parse",
+    "search"
+  ],
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/frederickf/bqpjs.git"
+  },
   "devDependencies": {
     "eslint": "^6.5.1",
     "jest": "^24.9.0",
