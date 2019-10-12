@@ -1,6 +1,6 @@
 # Boolean Query Parser JS
 
-Boolean Query Parser JS (BQPJS) is Boolean query string parser.
+Transform a Boolean query string into a tokanized tree or rpn data structure.
 
 ```
 let parsed = bqpjs('A AND B')
@@ -11,7 +11,7 @@ let parsed = bqpjs('A AND B')
 npm install bqpjs
 ```
 
-BQPJS is under active development. Features and API may not be stable until a 1.x.x release. You may wish to use `--save-exact` to avoid installing breaking changes in the future.
+Features and API may not be stable until a 1.x.x release. You may wish to use `--save-exact` to avoid installing breaking changes in the future.
 
 ## Features
 
@@ -45,14 +45,18 @@ Queries will be evaluated in the following order in the absence of parenthesis:
 2. AND
 3. OR
 
-### Short tokens
+### Alternate operator characters
 The following short tokens are supported:
 
-| Token | Name | Character | Example |
+| Operator | Name | Character | Example |
 |---|---|:---:|---|
  AND | Plus sign | `+` | `A + B`
  OR | Tilde | `~` | `A ~ B`
  NOT | Minus sign | `-` | `A + B - C`
+
+ Operators and alternates can be mixed:
+ * `A + B AND C`
+ * `A AND B -D`
 
 ### Validation
 Incorrectly formatted search strings will trigger an error to be thrown.
@@ -61,16 +65,45 @@ Input: ```'A OR OR C'```
 
 Output: ```Error: Invalid token "OR" at position 5```
 
-### White space
-White space is ignored.
-* `AANDB` interpreted as `A AND B`
-* 'A&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B' interpreted as `A AND B`
+### White-space
+White-space is ignored.
+* `AANDB` is interpreted as `A AND B`
+* 'A&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B' is interpreted as `A AND B`
 
+### Tokanized data structure results
+
+The search string input is transformed into objects of the following structure:
+```
+{
+  "value": String,
+  "type": String,
+  "operation": String,
+  "position": {
+    "start": Number,
+    "end": Number
+  },
+  "left": null or Token, // tree only
+  "right": null or Token // tree only
+}
+```
+| Key | Description |
+|---|---|
+ `value` | A value from the input string represented by this token.
+ `type` | Either `term` or `operator`
+ `operation` | Identifies operator. Only present if `type` is `operator`. Will be `AND`, `OR` or `NOT`
+ `position.start` | Zero indexed location of the start of the value in the input string
+ `position.end` | Zero indexed location of the end of the value in the input string
+ `left` | Operand token. Tree only
+ `right` | Operand token. Tree only
+
+See Example section below for data structures with actual values.
+
+## How it works
+The input string is parsed to find known patterns. These matches are then assigned type, operation, and position as appropriate to create tokens, quotations are converted to terms, white-space is removed, and the tokens are validated. Next, an implementation of Dijkstra's Shunting Yard algorithm is used to re-order the tokens in reverse polish notation with parentheses removed. Finally, an expression tree is generated with operations as nodes and terms as leafs.
 
 ## Example
-`bqpjs()` takes a string representing a Boolean query. It parses the query and returns two data structures, one in reverse polish notation and the other a binary tree, that represent the query. Each is a complete representation. It is then up to the developer to process one of those to perform a search.
 
-See [/examples](./examples) for example scripts.
+See [/examples](./examples) for scripts demonstrating how to use bqpjs().
 
 ### Input
 ```

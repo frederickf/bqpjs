@@ -15,7 +15,7 @@ const operators = {
   }
 }
 
-// This is an implementation of Dijkstra' Shunting Yard
+// This is an implementation of Dijkstra's Shunting Yard
 const createRpn = (tokens) => {
   let output = []
   const operatorStack = []
