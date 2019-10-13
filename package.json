@@ -1,6 +1,6 @@
 {
   "name": "bqpjs",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Boolean Queary Parser JS",
   "files": [
     "dist/bundle.cjs.js",
