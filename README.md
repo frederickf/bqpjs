@@ -1,6 +1,6 @@
 # Boolean Query Parser JS
 
-Transform a Boolean query string into a tokanized tree or rpn data structure.
+Transform a Boolean query string into a tokenized tree or [RPN](https://en.wikipedia.org/wiki/Reverse_Polish_notation) data structure.
 
 ```
 let parsed = bqpjs('A AND B')
@@ -34,9 +34,9 @@ BQPJS supports the following Boolean search syntax:
   * `"A AND B" OR A OR B`
     * `A AND B` is treated as a single term. `AND` is not evaluated as an operator.
     * Anything inside quotations will be treated as a single term
-* **Parenthesis**
+* **Parentheses**
   * `(A OR B) AND (C OR D)`
-* **Nested parenthesis**
+* **Nested parentheses**
   * `(C AND (A OR B)) NOT D`
 
 ### Order of operations
@@ -70,7 +70,7 @@ White-space is ignored.
 * `AANDB` is interpreted as `A AND B`
 * 'A&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B' is interpreted as `A AND B`
 
-### Tokanized data structure results
+### Tokenized data structure results
 
 The search string input is transformed into objects of the following structure:
 ```
@@ -99,7 +99,7 @@ The search string input is transformed into objects of the following structure:
 See Example section below for data structures with actual values.
 
 ## How it works
-The input string is parsed to find known patterns. These matches are then assigned type, operation, and position as appropriate to create tokens, quotations are converted to terms, white-space is removed, and the tokens are validated. Next, an implementation of Dijkstra's Shunting Yard algorithm is used to re-order the tokens in reverse polish notation with parentheses removed. Finally, an expression tree is generated with operations as nodes and terms as leafs.
+The input string is parsed to find known patterns. These matches are then assigned type, operation, and position as appropriate to create tokens, quotations are converted to terms, white-space is removed, and the token sequence is validated. Next, an implementation of Dijkstra's Shunting Yard algorithm is used to re-order the tokens in reverse polish notation with parentheses removed. Finally, an expression tree is generated with operations as nodes and terms as leafs.
 
 ## Example
 
