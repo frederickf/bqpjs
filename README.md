@@ -112,6 +112,8 @@ let parsed = bqpjs('A AND B')
 
 ### Output
 
+Both `rpn` and `tree` are a complete representation of the input. 
+
 ```
 {
   rpn: [{
